@@ -4,11 +4,11 @@ services:
   postgres:
     image: postgres:14.0
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: techfolio
+      POSTGRES_PASSWORD: techfolio
+      POSTGRES_DB: techfolio
       TZ: 'Asia/Tokyo'
     ports:
       - 5432:5432
     volumes:
-      - ./dist/data:/var/lib/postgresql/data
+      - ./dist/data:/var/lib/techfolio/data

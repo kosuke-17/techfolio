@@ -1,0 +1,65 @@
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:21:37.485Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:21:37.486Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:21:37.487Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:21:37.487Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:21:37.784Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:23.803Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:23.804Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:23.805Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:23.805Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:23.892Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:28.769Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:28.769Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:28.770Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:28.770Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:28.914Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:29.591Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:29.592Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:29.593Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:29.593Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:29.661Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:31.089Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:31.090Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:31.091Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:31.091Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:31.138Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:45.922Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:45.922Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:45.923Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:45.923Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:45.987Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:48.284Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:48.285Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:48.286Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:48.286Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:48.364Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:49.978Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:49.979Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:49.980Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:49.980Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:50.013Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:54.023Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:54.024Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:54.025Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:54.025Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:54.085Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:55.503Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:55.504Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:55.505Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:55.505Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:55.604Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:23:59.707Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:23:59.707Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:59.709Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:23:59.709Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:23:59.801Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:24:01.775Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:24:01.776Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:24:01.777Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:24:01.777Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:24:01.821Z"}
+{"level":"info","message":"AppController {/api}:","service":"user-service","timestamp":"2023-02-14T23:24:04.918Z"}
+{"level":"info","message":"UsersController {/api/users}:","service":"user-service","timestamp":"2023-02-14T23:24:04.919Z"}
+{"level":"info","message":"Mapped {/api/users, GET} route","service":"user-service","timestamp":"2023-02-14T23:24:04.920Z"}
+{"level":"info","message":"Mapped {/api/users/id, GET} route","service":"user-service","timestamp":"2023-02-14T23:24:04.920Z"}
+{"level":"info","message":"Nest application successfully started","service":"user-service","timestamp":"2023-02-14T23:24:04.970Z"}

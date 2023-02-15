@@ -16,7 +16,6 @@ export class LoggerService implements NestLoggerService {
         // - Write all logs with level `info` and below to `combined.log`
         //
         new transports.File({ filename: 'error.log', level: 'error' }),
-        new transports.File({ filename: 'combined.log' }),
       ],
     })
   }

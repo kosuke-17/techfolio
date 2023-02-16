@@ -16,4 +16,29 @@ model User {
   updatedAt DateTime @updatedAt()
   firstName String
   lastName  String
+
+  userInformation UserInforMation?
+}
+
+enum GENDER {
+  MALE
+  FEMALE
+}
+
+model UserInforMation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  stuffId String
+  age     Int
+  gender GENDER
+  nearestStation String
+  startWorkDate DateTime
+  seExpAmount Int
+  pgExpAmount Int
+  itExpAmount Int
+
+  user   User @relation(fields: [userId], references: [id])
+  userId String  @unique
 }

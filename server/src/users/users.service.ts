@@ -8,9 +8,18 @@ export class UsersService {
   private readonly logger: LoggerService
   constructor(private prisma: PrismaService) {}
 
-  async findOne({ id }: Prisma.UserWhereUniqueInput): Promise<User | null> {
+  async findOne({
+    id,
+  }: Prisma.UserWhereUniqueInput): Promise<
+    (User & { secret: { password: string } }) | null
+  > {
     return this.prisma.user.findUnique({
       where: { id },
+      include: {
+        secret: {
+          select: { password: true },
+        },
+      },
     })
   }
 

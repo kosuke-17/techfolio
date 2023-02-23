@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "codegen": "npx @rtk-query/codegen-openapi openapi-config.ts",
-    "dev": "yarn codegen && next dev",
+    "dev:openapi": "watch 'yarn codegen' ../server .",
+    "dev": "dev:openapi & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -21,7 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "watch": "^1.0.2"
   },
   "devDependencies": {
     "@rtk-query/codegen-openapi": "^1.0.0",

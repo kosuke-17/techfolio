@@ -27,6 +27,7 @@ model UserSecret {
   updatedAt DateTime @updatedAt()
 
   password String
+  token String?
 
   user User @relation(fields: [userId],references: [id], onDelete: Cascade)
   userId String  @unique

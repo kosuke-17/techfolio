@@ -1,6 +1,24 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/api/auth/login": {
+      "post": {
+        "operationId": "AppController_login",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users": {
       "get": {
         "operationId": "UsersController_findAll",

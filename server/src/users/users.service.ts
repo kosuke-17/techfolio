@@ -3,14 +3,27 @@ import { PrismaService } from 'src/prisma/prisma.service'
 import { User, Prisma } from '@prisma/client'
 import { LoggerService } from 'src/logger/logger.service'
 
+export type FindOneType = User & {
+  secret: {
+    password: string
+  }
+}
+
 @Injectable()
 export class UsersService {
   private readonly logger: LoggerService
   constructor(private prisma: PrismaService) {}
 
-  async findOne({ id }: Prisma.UserWhereUniqueInput): Promise<User | null> {
+  async findOne({
+    id,
+  }: Prisma.UserWhereUniqueInput): Promise<FindOneType | null> {
     return this.prisma.user.findUnique({
       where: { id },
+      include: {
+        secret: {
+          select: { password: true },
+        },
+      },
     })
   }
 

@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import { getUsers } from '@/store/hooks/user'
+import Login from '@/components/templates/LoginCard'
 
 export default function Home() {
-  getUsers()
   return (
     <>
       <Head>
@@ -11,7 +10,9 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>表示</main>
+      <main>
+        <Login />
+      </main>
     </>
   )
 }

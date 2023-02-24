@@ -1,4 +1,4 @@
-import { enhancedApi as enhancedUserApi } from '../api/user'
+import { enhancedApi as enhancedUserApi } from '../api/codegen/user'
 
 export const getUsers = () => {
   const { data: users } = enhancedUserApi.useUsersControllerFindAllQuery()

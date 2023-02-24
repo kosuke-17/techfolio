@@ -5,8 +5,8 @@ const config: ConfigFile = {
   apiFile: './src/store/baseApi.ts',
   apiImport: 'baseApi',
   outputFiles: {
-    './src/store/api/codegen/auth.ts': {
-      filterEndpoints: [/auth/i],
+    './src/store/api/codegen/app.ts': {
+      filterEndpoints: [/appController/i],
     },
     './src/store/api/codegen/user.ts': {
       filterEndpoints: [/UsersController/i],

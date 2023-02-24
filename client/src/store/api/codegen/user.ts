@@ -7,6 +7,16 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: () => ({ url: `/api/users` }),
     }),
+    usersControllerCreate: build.mutation<
+      UsersControllerCreateApiResponse,
+      UsersControllerCreateApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/users`,
+        method: "POST",
+        body: queryArg.createUserDto,
+      }),
+    }),
     usersControllerFindOne: build.query<
       UsersControllerFindOneApiResponse,
       UsersControllerFindOneApiArg
@@ -20,6 +30,10 @@ export { injectedRtkApi as enhancedApi };
 export type UsersControllerFindAllApiResponse =
   /** status 200  */ UserResponseDto[];
 export type UsersControllerFindAllApiArg = void;
+export type UsersControllerCreateApiResponse = /** status 201  */ object;
+export type UsersControllerCreateApiArg = {
+  createUserDto: CreateUserDto;
+};
 export type UsersControllerFindOneApiResponse =
   /** status 200  */ UserResponseDto;
 export type UsersControllerFindOneApiArg = {
@@ -29,7 +43,12 @@ export type UserResponseDto = {
   firstName: string;
   lastName: string;
 };
+export type CreateUserDto = {
+  firstName: string;
+  lastName: string;
+};
 export const {
   useUsersControllerFindAllQuery,
+  useUsersControllerCreateMutation,
   useUsersControllerFindOneQuery,
 } = injectedRtkApi;

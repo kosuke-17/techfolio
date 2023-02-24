@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "run-p -l dev:*",
-    "dev:client": "next dev -p 3000",
+    "dev": "next dev & yarn openapi",
     "dev:openapi": "watch 'yarn openapi' ../server .",
     "openapi": "rtk-query-codegen-openapi openapi-config.ts",
     "build": "next build",

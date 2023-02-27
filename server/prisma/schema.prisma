@@ -16,6 +16,7 @@ model User {
   updatedAt DateTime @updatedAt()
   firstName String
   lastName  String
+  email     String?
 
   secret UserSecret?
   userInformation UserInforMation?

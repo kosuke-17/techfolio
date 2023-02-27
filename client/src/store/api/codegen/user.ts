@@ -37,7 +37,7 @@ export type UsersControllerCreateApiArg = {
 export type UsersControllerFindOneApiResponse =
   /** status 200  */ UserResponseDto;
 export type UsersControllerFindOneApiArg = {
-  id: string;
+  email: string;
 };
 export type UserResponseDto = {
   firstName: string;

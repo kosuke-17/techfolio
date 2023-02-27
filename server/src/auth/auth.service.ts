@@ -6,12 +6,15 @@ import { FindOneType, UsersService } from 'src/users/users.service'
 export class AuthService {
   constructor(private usersService: UsersService) {}
 
-  async validateUser(id: string, pass: string): Promise<FindOneType> {
-    const user = await this.usersService.findOne({ id })
-    if (user && user.secret.password === pass) {
-      delete user.secret.password
-      return user
+  async validateUser(email: string, pass: string): Promise<FindOneType> {
+    try {
+      const user = await this.usersService.findOne({ email })
+      if (user && user.secret.password === pass) {
+        delete user.secret.password
+        return user
+      }
+    } catch (error) {
+      console.error(error)
     }
-    return null
   }
 }

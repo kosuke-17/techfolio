@@ -81,7 +81,7 @@
         "operationId": "UsersController_findOne",
         "parameters": [
           {
-            "name": "id",
+            "name": "email",
             "required": true,
             "in": "path",
             "schema": {
@@ -121,9 +121,6 @@
             "type": "string"
           },
           "password": {
-            "type": "string"
-          },
-          "token": {
             "type": "string"
           }
         }

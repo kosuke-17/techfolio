@@ -8,8 +8,4 @@ export class LoginDto {
   @IsOptional()
   @IsString()
   password?: string
-
-  @IsOptional()
-  @IsString()
-  token?: string
 }

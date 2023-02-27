@@ -9,6 +9,7 @@ import { z } from 'zod'
 
 import CustomTextField from '@/components/presentations/CustomTextField'
 import Stack from '@mui/material/Stack'
+import { enhancedApi } from '@/store/api/codegen/app'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -29,8 +30,13 @@ const StyledCardContent = styled(CardContent)(({}) => ({
 }))
 
 const Login = () => {
-  const login = () => {
-    console.log('ログイン')
+  const [loginMutation] = enhancedApi.useAppControllerLoginMutation()
+  const login = async (loginDto: DefaultValues) => {
+    try {
+      await loginMutation({ loginDto }).unwrap()
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const defaultValues = {
@@ -38,15 +44,21 @@ const Login = () => {
     password: '',
   }
 
-  const { control, handleSubmit } = useForm<DefaultValues>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<DefaultValues>({
     resolver: zodResolver(loginSchema),
     defaultValues,
   })
 
+  console.log(errors)
+
   return (
     <StyledCard>
-      <StyledCardContent>
-        <form onSubmit={handleSubmit(login)}>
+      <form onSubmit={handleSubmit(login)}>
+        <StyledCardContent>
           <Stack spacing={2}>
             <CustomTextField
               name='email'
@@ -61,13 +73,13 @@ const Login = () => {
               defaultValue=''
             />
           </Stack>
-        </form>
-      </StyledCardContent>
-      <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Button sx={{ width: '50%' }} variant='contained'>
-          ログイン
-        </Button>
-      </CardActions>
+        </StyledCardContent>
+        <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button type='submit' sx={{ width: '50%' }} variant='contained'>
+            ログイン
+          </Button>
+        </CardActions>
+      </form>
     </StyledCard>
   )
 }

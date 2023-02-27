@@ -22,6 +22,5 @@ export type AppControllerLoginApiArg = {
 export type LoginDto = {
   email?: string;
   password?: string;
-  token?: string;
 };
 export const { useAppControllerLoginMutation } = injectedRtkApi;

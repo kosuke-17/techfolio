@@ -14,17 +14,20 @@ export class UsersService {
   private readonly logger: LoggerService
   constructor(private prisma: PrismaService) {}
 
-  async findOne({
-    id,
-  }: Prisma.UserWhereUniqueInput): Promise<FindOneType | null> {
-    return this.prisma.user.findUnique({
-      where: { id },
-      include: {
-        secret: {
-          select: { password: true },
+  async findOne({ email }: { email: string }): Promise<FindOneType | null> {
+    try {
+      const user = this.prisma.user.findFirst({
+        where: { email },
+        include: {
+          secret: {
+            select: { password: true },
+          },
         },
-      },
-    })
+      })
+      return user
+    } catch (e) {
+      this.logger.log(e)
+    }
   }
 
   async findAll(): Promise<User[]> {

@@ -3,11 +3,9 @@ import LayoutCenterFull from '@/components/presentations/LayoutCenterFull'
 
 const LoginPage = () => {
   return (
-    <main>
-      <LayoutCenterFull>
-        <Login />
-      </LayoutCenterFull>
-    </main>
+    <LayoutCenterFull>
+      <Login />
+    </LayoutCenterFull>
   )
 }
 

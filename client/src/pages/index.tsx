@@ -1,5 +1,15 @@
-import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 export default function Home() {
-  return <>メイ</>
+  const router = useRouter()
+
+  useEffect(() => {
+    const loginToken = localStorage.getItem('token')
+    if (loginToken) null
+
+    router.push('login')
+  }, [router])
+
+  return <></>
 }

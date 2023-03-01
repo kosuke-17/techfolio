@@ -1,33 +1,24 @@
 import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
-import { styled } from '@mui/material/styles'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import {
+  StyledCard,
+  StyledCardContent,
+} from '@/components/presentations/atoms/StyledCard'
 import CustomTextField from '@/components/presentations/CustomTextField'
 import Stack from '@mui/material/Stack'
 import { enhancedApi } from '@/store/api/codegen/app'
+import Link from '@/components/presentations/Link'
+import { requiredEmailString, requiredString } from '@/zod/common'
 
 const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
+  email: requiredEmailString,
+  password: requiredString,
 })
 export type DefaultValues = z.infer<typeof loginSchema>
-
-const StyledCard = styled(Card)(({ theme }) => ({
-  width: 400,
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(1),
-}))
-
-const StyledCardContent = styled(CardContent)(({}) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-}))
 
 const Login = () => {
   const [loginMutation] = enhancedApi.useAppControllerLoginMutation()
@@ -39,27 +30,15 @@ const Login = () => {
     }
   }
 
-  const defaultValues = {
-    email: '',
-    password: '',
-  }
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<DefaultValues>({
+  const { control, handleSubmit } = useForm<DefaultValues>({
     resolver: zodResolver(loginSchema),
-    defaultValues,
   })
-
-  console.log(errors)
 
   return (
     <StyledCard>
       <form onSubmit={handleSubmit(login)}>
         <StyledCardContent>
-          <Stack spacing={2}>
+          <Stack spacing={1}>
             <CustomTextField
               name='email'
               label='メール'
@@ -74,10 +53,13 @@ const Login = () => {
             />
           </Stack>
         </StyledCardContent>
-        <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Button type='submit' sx={{ width: '50%' }} variant='contained'>
-            ログイン
-          </Button>
+        <CardActions sx={{ display: 'column', justifyContent: 'center' }}>
+          <Stack spacing={1}>
+            <Button type='submit' variant='contained'>
+              ログイン
+            </Button>
+            <Link href='/users/new'>ユーザーを作成</Link>
+          </Stack>
         </CardActions>
       </form>
     </StyledCard>

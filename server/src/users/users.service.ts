@@ -1,7 +1,10 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
-import { PrismaService } from 'src/prisma/prisma.service'
 import { User, Prisma } from '@prisma/client'
+import { v4 as uuid } from 'uuid'
+// import bcrypt from 'bcrypt'
+import { PrismaService } from 'src/prisma/prisma.service'
 import { LoggerService } from 'src/logger/logger.service'
+import { CreateUserDto } from './dtos/create-user.dto'
 
 export type FindOneType = User & {
   secret: {
@@ -51,10 +54,34 @@ export class UsersService {
     }
   }
 
-  async create(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
-      data,
-    })
+  // なせかエラー
+  // async generateHash(password: string): Promise<string> {
+  //   const hash = await bcrypt.hash(password, 10)
+  //   return hash
+  // }
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const { password, ...rest } = createUserDto
+    // const hash = await this.generateHash(password)
+
+    try {
+      const user = await this.prisma.user.create({
+        data: { ...rest },
+      })
+
+      await this.prisma.userSecret.create({
+        data: {
+          token: uuid(),
+          password,
+          user: { connect: { id: user.id } },
+        },
+      })
+
+      return user
+    } catch (e) {
+      // ログ出るか確認
+      this.logger.log(e)
+    }
   }
 
   async update(params: {

@@ -1,0 +1,10 @@
+{"level":"error","message":"Cannot read properties of undefined (reading 'hash')","service":"user-service","timestamp":"2023-03-01T12:30:26.931Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'hash')","service":"user-service","timestamp":"2023-03-01T12:31:05.415Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'log')","service":"user-service","timestamp":"2023-03-01T12:33:10.385Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'log')","service":"user-service","timestamp":"2023-03-01T12:34:25.329Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'log')","service":"user-service","timestamp":"2023-03-01T12:36:05.291Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'log')","service":"user-service","timestamp":"2023-03-01T12:36:37.666Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'log')","service":"user-service","timestamp":"2023-03-01T12:37:23.728Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'hash')","service":"user-service","timestamp":"2023-03-01T12:37:48.424Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'hash')","service":"user-service","timestamp":"2023-03-01T12:38:01.645Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'hash')","service":"user-service","timestamp":"2023-03-01T12:38:18.600Z"}

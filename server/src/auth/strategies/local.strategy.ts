@@ -8,7 +8,7 @@ import { FindOneType } from 'src/users/users.service'
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
-    super()
+    super({ usernameField: 'email' })
   }
 
   async validate(email: string, password: string): Promise<FindOneType> {
@@ -16,9 +16,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException()
     }
-
-    console.log('ログイン成功🚀🚀🚀🚀')
-
     return user
   }
 }

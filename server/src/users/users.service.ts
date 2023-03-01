@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { User, Prisma } from '@prisma/client'
 import { LoggerService } from 'src/logger/logger.service'
@@ -28,6 +28,19 @@ export class UsersService {
     } catch (e) {
       this.logger.log(e)
     }
+  }
+
+  async loginByToken(token: string) {
+    const userSecret = await this.prisma.userSecret.findFirst({
+      where: { token },
+      include: { user: true },
+    })
+
+    if (!userSecret) {
+      throw new UnauthorizedException('user not found when login by token')
+    }
+
+    return { data: userSecret.user }
   }
 
   async findAll(): Promise<User[]> {

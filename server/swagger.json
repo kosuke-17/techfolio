@@ -21,7 +21,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/ResponseLoginUserDto"
                 }
               }
             }
@@ -103,19 +103,20 @@
         }
       }
     },
-    "/api/users/{id}/logout": {
+    "/api/users/logout": {
       "put": {
         "operationId": "UsersController_logout",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserSecretDto"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": ""
@@ -145,6 +146,68 @@
           }
         }
       },
+      "SecretForResponseLoginUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
+          "password",
+          "token"
+        ]
+      },
+      "ResponseLoginUserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "secret": {
+            "$ref": "#/components/schemas/SecretForResponseLoginUser"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
+          "firstName",
+          "lastName",
+          "secret"
+        ]
+      },
       "UserResponseDto": {
         "type": "object",
         "properties": {
@@ -158,6 +221,17 @@
         "required": [
           "firstName",
           "lastName"
+        ]
+      },
+      "UpdateUserSecretDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
         ]
       },
       "CreateUserDto": {

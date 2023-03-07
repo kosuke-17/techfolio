@@ -9,13 +9,17 @@ import { v4 as uuid } from 'uuid'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { LoggerService } from 'src/logger/logger.service'
 import { CreateUserDto } from './dtos/create-user.dto'
+import { UpdateUserSecretDto } from './dtos/update-user-secret.dto'
+import { ResponseLoginUserDto } from './dtos/response-login-user.dto'
 
 export type FindOneType = User & { secret: UserSecret }
 
 @Injectable()
 export class UsersService {
-  private readonly logger: LoggerService
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly logger: LoggerService,
+  ) {}
 
   async findOne(id: string): Promise<FindOneType | null> {
     try {
@@ -31,13 +35,11 @@ export class UsersService {
     }
   }
 
-  async findOneByEmail(email: string): Promise<FindOneType | null> {
+  async findOneByEmail(email: string): Promise<ResponseLoginUserDto> {
     try {
       const user = await this.prisma.user.findFirst({
         where: { email },
-        include: {
-          secret: true,
-        },
+        include: { secret: true },
       })
       return user
     } catch (e) {
@@ -58,17 +60,15 @@ export class UsersService {
     return { data: userSecret.user }
   }
 
-  async logout(id: string) {
-    const user = await this.prisma.user.findUnique({
-      where: { id },
+  async logoutByToken(updateUserSecretDto: UpdateUserSecretDto) {
+    const secret = await this.prisma.userSecret.findFirst({
+      where: { token: updateUserSecretDto.token },
     })
-    if (!user) throw new NotFoundException('user not found')
+    if (!secret) throw new NotFoundException('secret not found')
 
     await this.prisma.userSecret.update({
-      where: { userId: user.id },
-      data: {
-        token: null,
-      },
+      where: { id: secret.id },
+      data: { token: null },
     })
   }
 
@@ -111,7 +111,21 @@ export class UsersService {
         },
       })
     } catch (e) {
-      // ログ出るか確認
+      this.logger.log(e)
+    }
+  }
+
+  async createToken(userId: string) {
+    try {
+      const secret = await this.prisma.userSecret.update({
+        where: { userId },
+        data: {
+          token: uuid(),
+        },
+      })
+
+      return secret.token
+    } catch (e) {
       this.logger.log(e)
     }
   }

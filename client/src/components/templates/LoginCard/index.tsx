@@ -33,8 +33,8 @@ const Login = () => {
   }
   const login = async (loginDto: DefaultValues) => {
     try {
-      await loginMutation({ loginDto }).unwrap()
-
+      const user = await loginMutation({ loginDto }).unwrap()
+      localStorage.setItem('token', user.secret.token)
       router.push('/home')
     } catch (e) {
       setOpen(true)

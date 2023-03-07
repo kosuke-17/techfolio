@@ -28,8 +28,9 @@ const injectedRtkApi = api.injectEndpoints({
       UsersControllerLogoutApiArg
     >({
       query: (queryArg) => ({
-        url: `/api/users/${queryArg.id}/logout`,
+        url: `/api/users/logout`,
         method: "PUT",
+        body: queryArg.updateUserSecretDto,
       }),
     }),
   }),
@@ -51,7 +52,7 @@ export type UsersControllerFindOneApiArg = {
 };
 export type UsersControllerLogoutApiResponse = unknown;
 export type UsersControllerLogoutApiArg = {
-  id: string;
+  updateUserSecretDto: UpdateUserSecretDto;
 };
 export type UserResponseDto = {
   firstName: string;
@@ -69,6 +70,9 @@ export type CreateUserDto = {
   lastName: string;
   email: string;
   password: string;
+};
+export type UpdateUserSecretDto = {
+  token: string;
 };
 export const {
   useUsersControllerFindAllQuery,

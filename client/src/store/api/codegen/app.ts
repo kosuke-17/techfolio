@@ -15,9 +15,25 @@ const injectedRtkApi = api.injectEndpoints({
   overrideExisting: false,
 });
 export { injectedRtkApi as enhancedApi };
-export type AppControllerLoginApiResponse = /** status 200  */ object;
+export type AppControllerLoginApiResponse =
+  /** status 200  */ ResponseLoginUserDto;
 export type AppControllerLoginApiArg = {
   loginDto: LoginDto;
+};
+export type SecretForResponseLoginUser = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  password: string;
+  token: string;
+};
+export type ResponseLoginUserDto = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+  secret: SecretForResponseLoginUser;
 };
 export type LoginDto = {
   email?: string;

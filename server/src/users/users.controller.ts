@@ -3,6 +3,7 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
 import { CreateUserDto } from './dtos/create-user.dto'
 import { UserCreateResponseDto } from './dtos/response-create-user.dto'
 import { UserResponseDto } from './dtos/response-user.dto'
+import { UpdateUserSecretDto } from './dtos/update-user-secret.dto'
 import { UsersService } from './users.service'
 
 @Controller('users')
@@ -19,9 +20,11 @@ export class UsersController {
     return this.usersService.findOne(id)
   }
 
-  @Put(':id/logout')
-  async logout(@Param('id') id: string): Promise<void> {
-    this.usersService.logout(id)
+  @Put('/logout')
+  async logout(
+    @Body() updateUserSecretDto: UpdateUserSecretDto,
+  ): Promise<void> {
+    this.usersService.logoutByToken(updateUserSecretDto)
   }
 
   @Post()

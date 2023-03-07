@@ -1,30 +1,42 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'
-import { User, Prisma } from '@prisma/client'
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common'
+import { User, Prisma, UserSecret } from '@prisma/client'
 import { v4 as uuid } from 'uuid'
 // import bcrypt from 'bcrypt'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { LoggerService } from 'src/logger/logger.service'
 import { CreateUserDto } from './dtos/create-user.dto'
 
-export type FindOneType = User & {
-  secret: {
-    password: string
-  }
-}
+export type FindOneType = User & { secret: UserSecret }
 
 @Injectable()
 export class UsersService {
   private readonly logger: LoggerService
   constructor(private prisma: PrismaService) {}
 
-  async findOne({ email }: { email: string }): Promise<FindOneType | null> {
+  async findOne(id: string): Promise<FindOneType | null> {
     try {
-      const user = this.prisma.user.findFirst({
+      const user = await this.prisma.user.findFirst({
+        where: { id },
+        include: {
+          secret: true,
+        },
+      })
+      return user
+    } catch (e) {
+      this.logger.log(e)
+    }
+  }
+
+  async findOneByEmail(email: string): Promise<FindOneType | null> {
+    try {
+      const user = await this.prisma.user.findFirst({
         where: { email },
         include: {
-          secret: {
-            select: { password: true },
-          },
+          secret: true,
         },
       })
       return user
@@ -46,6 +58,20 @@ export class UsersService {
     return { data: userSecret.user }
   }
 
+  async logout(id: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+    })
+    if (!user) throw new NotFoundException('user not found')
+
+    await this.prisma.userSecret.update({
+      where: { userId: user.id },
+      data: {
+        token: null,
+      },
+    })
+  }
+
   async findAll(): Promise<User[]> {
     try {
       return await this.prisma.user.findMany()
@@ -60,7 +86,7 @@ export class UsersService {
   //   return hash
   // }
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto) {
     const { password, ...rest } = createUserDto
     // const hash = await this.generateHash(password)
 
@@ -77,7 +103,13 @@ export class UsersService {
         },
       })
 
-      return user
+      return this.prisma.user.findUnique({
+        where: { id: user.id },
+        select: {
+          id: true,
+          secret: { select: { token: true } },
+        },
+      })
     } catch (e) {
       // ログ出るか確認
       this.logger.log(e)

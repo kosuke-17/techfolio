@@ -36,8 +36,9 @@ const UserCreateCard = () => {
 
   const create = async (createUserDto: DefaultValues) => {
     try {
-      await createMutation({ createUserDto }).unwrap()
+      const user = await createMutation({ createUserDto }).unwrap()
 
+      localStorage.setItem('tonken', user.secret.token)
       router.push('/login')
       setOpen(true)
     } catch (e) {

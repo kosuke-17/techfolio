@@ -6,9 +6,11 @@ export default function Home() {
 
   useEffect(() => {
     const loginToken = localStorage.getItem('token')
-    if (loginToken) null
-
-    router.push('login')
+    if (loginToken) {
+      router.push('/home')
+    } else {
+      router.push('/login')
+    }
   }, [router])
 
   return <></>

@@ -68,7 +68,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/UserCreateResponseDto"
                 }
               }
             }
@@ -76,12 +76,12 @@
         }
       }
     },
-    "/api/users/id": {
+    "/api/users/{id}": {
       "get": {
         "operationId": "UsersController_findOne",
         "parameters": [
           {
-            "name": "email",
+            "name": "id",
             "required": true,
             "in": "path",
             "schema": {
@@ -99,6 +99,26 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/users/{id}/logout": {
+      "put": {
+        "operationId": "UsersController_logout",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
           }
         }
       }
@@ -161,6 +181,32 @@
           "lastName",
           "email",
           "password"
+        ]
+      },
+      "userSecretForUserCreateResponseDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "UserCreateResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "secret": {
+            "$ref": "#/components/schemas/userSecretForUserCreateResponseDto"
+          }
+        },
+        "required": [
+          "id",
+          "secret"
         ]
       }
     }

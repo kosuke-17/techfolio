@@ -1,8 +1,12 @@
 import Button from '@mui/material/Button'
 import CardActions from '@mui/material/CardActions'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import {
   StyledCard,
@@ -21,11 +25,19 @@ const loginSchema = z.object({
 export type DefaultValues = z.infer<typeof loginSchema>
 
 const Login = () => {
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
   const [loginMutation] = enhancedApi.useAppControllerLoginMutation()
+  const onCloseSnackbar = () => {
+    setOpen(false)
+  }
   const login = async (loginDto: DefaultValues) => {
     try {
       await loginMutation({ loginDto }).unwrap()
+
+      router.push('/home')
     } catch (e) {
+      setOpen(true)
       console.error(e)
     }
   }
@@ -62,6 +74,16 @@ const Login = () => {
           </Stack>
         </CardActions>
       </form>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        onClose={onCloseSnackbar}
+        autoHideDuration={3000}
+      >
+        <Alert severity='error' sx={{ width: '100%' }}>
+          ログインできませんでした
+        </Alert>
+      </Snackbar>
     </StyledCard>
   )
 }

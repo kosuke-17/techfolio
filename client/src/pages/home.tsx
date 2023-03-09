@@ -1,10 +1,11 @@
+import { useState } from 'react'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 
 import { enhancedApi } from '@/store/api/codegen/user'
-import { useState } from 'react'
-import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert'
+import SpreadSheet from '@/components/templates/SpreadSheet'
 
 const HomePage = () => {
   const router = useRouter()
@@ -29,6 +30,7 @@ const HomePage = () => {
   }
   return (
     <>
+      <SpreadSheet />
       <Button variant='contained' onClick={logout}>
         ログアウト
       </Button>

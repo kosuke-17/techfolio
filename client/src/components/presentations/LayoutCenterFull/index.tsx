@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode
 }
 
-const StyledPageLayout = styled(Box)(({ theme }) => ({
+const StyledPageLayout = styled(Box)(() => ({
   height: '100vh',
   display: 'flex',
   justifyContent: 'center',

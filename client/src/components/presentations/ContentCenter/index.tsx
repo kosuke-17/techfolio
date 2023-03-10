@@ -14,7 +14,7 @@ const StyledLayout = styled(Box)(() => ({
 }))
 
 const StyledContent = styled(Box)(() => ({
-  width: '50%',
+  width: '90%',
 }))
 
 const ContentCenter: FC<Props> = ({ sx, children }) => {

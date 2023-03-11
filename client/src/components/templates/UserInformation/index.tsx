@@ -1,16 +1,11 @@
-import TableContainer from '@mui/material/TableContainer'
 import EditIcon from '@mui/icons-material/Edit'
-import Table from '@mui/material/Table'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import TableCell from '@mui/material/TableCell'
-import TableBody from '@mui/material/TableBody'
 import { styled } from '@mui/material/styles'
-import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
-import IconButton from '@/components/presentations/atoms/IconButton'
 import Box from '@mui/material/Box'
+
+import IconButton from '@/components/presentations/atoms/IconButton'
+import TableContainer from '@/components/presentations/TableContainer'
 
 const StyledUserInformation = styled(Stack)(({ theme }) => ({
   height: 600,
@@ -43,34 +38,7 @@ const UserInformation = () => {
           iconSx={{ color: 'common.black', fontSize: '16px' }}
         />
       </StyledTableHeader>
-      <TableContainer component={Paper} elevation={2}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {colums.map(({ name }) => (
-                <TableCell key={name} sx={{ fontWeight: 'bold' }}>
-                  {name}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, idx) => (
-              <TableRow
-                key={row.name}
-                sx={{
-                  bgcolor: idx % 2 === 0 ? 'primary.light' : null,
-                }}
-              >
-                <TableCell component='th' scope='row'>
-                  {row.name}
-                </TableCell>
-                <TableCell>{row.content}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TableContainer colums={colums} rows={rows} />
     </StyledUserInformation>
   )
 }

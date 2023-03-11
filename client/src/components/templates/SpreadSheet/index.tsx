@@ -7,10 +7,9 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import { styled } from '@mui/material/styles'
 
 import ContentCenter from '@/components/presentations/ContentCenter'
+import UserInformation from '@/components/UserInformation'
 
 const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
-  paddingLeft: theme.spacing(3),
-  paddingRight: theme.spacing(3),
   paddingTop: theme.spacing(3),
   display: 'flex',
   justifyContent: 'space-between',
@@ -19,7 +18,7 @@ const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
 const SpreadSheet = () => {
   return (
     <ContentCenter sx={{ pt: 3 }}>
-      <Paper sx={{ height: 600, borderRadius: 10 }} elevation={3}>
+      <Paper sx={{ borderRadius: 10, px: 3 }} elevation={3}>
         <StyledSpreadSheetHeader>
           <Typography variant='h3'>SpreadSheet</Typography>
           <IconButton sx={{ boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }}>
@@ -28,6 +27,8 @@ const SpreadSheet = () => {
             />
           </IconButton>
         </StyledSpreadSheetHeader>
+
+        <UserInformation />
       </Paper>
     </ContentCenter>
   )

@@ -6,7 +6,7 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import { styled } from '@mui/material/styles'
 
 import ContentCenter from '@/components/presentations/ContentCenter'
-import UserInformation from '@/components/UserInformation'
+import UserInformation from '@/components/templates/UserInformation'
 import IconButton from '@/components/presentations/atoms/IconButton'
 
 const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({

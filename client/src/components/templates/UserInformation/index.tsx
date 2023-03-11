@@ -1,4 +1,5 @@
 import TableContainer from '@mui/material/TableContainer'
+import EditIcon from '@mui/icons-material/Edit'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -8,10 +9,18 @@ import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
+import IconButton from '@/components/presentations/atoms/IconButton'
+import Box from '@mui/material/Box'
 
 const StyledUserInformation = styled(Stack)(({ theme }) => ({
   height: 600,
   paddingTop: theme.spacing(2),
+}))
+
+const StyledTableHeader = styled(Box)(({ theme }) => ({
+  paddingTop: theme.spacing(2),
+  display: 'flex',
+  justifyContent: 'space-between',
 }))
 
 const UserInformation = () => {
@@ -27,7 +36,13 @@ const UserInformation = () => {
   ]
   return (
     <StyledUserInformation spacing={2}>
-      <Typography variant='h5'>基本情報</Typography>
+      <StyledTableHeader>
+        <Typography variant='h5'>基本情報</Typography>
+        <IconButton
+          icon={EditIcon}
+          iconSx={{ color: 'common.black', fontSize: '16px' }}
+        />
+      </StyledTableHeader>
       <TableContainer component={Paper} elevation={2}>
         <Table>
           <TableHead>

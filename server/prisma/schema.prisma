@@ -19,7 +19,7 @@ model User {
   email     String?
 
   secret UserSecret?
-  userInformation UserInforMation?
+  userInformation UserInformation?
 }
 
 model UserSecret {
@@ -39,7 +39,7 @@ enum GENDER {
   FEMALE
 }
 
-model UserInforMation {
+model UserInformation {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()

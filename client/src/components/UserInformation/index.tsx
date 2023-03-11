@@ -5,15 +5,17 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import { styled } from '@mui/material/styles'
+import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
 
-const StyledUserInformation = styled(Box)(({ theme }) => ({
+const StyledUserInformation = styled(Stack)(({ theme }) => ({
   height: 600,
   paddingTop: theme.spacing(2),
 }))
 
 const UserInformation = () => {
+  const colums = [{ name: '項目名' }, { name: '内容' }]
   const rows = [
     { name: 'スタッフID', content: 'FR-204-2442' },
     { name: '年齢', content: '20代前半' },
@@ -24,14 +26,17 @@ const UserInformation = () => {
     { name: 'IT全体歴', content: '1年8ヶ月' },
   ]
   return (
-    <StyledUserInformation>
+    <StyledUserInformation spacing={2}>
       <Typography variant='h5'>基本情報</Typography>
-      <TableContainer>
-        <Table aria-label='simple table'>
+      <TableContainer component={Paper} elevation={2}>
+        <Table>
           <TableHead>
             <TableRow>
-              <TableCell>項目名</TableCell>
-              <TableCell>内容</TableCell>
+              {colums.map(({ name }) => (
+                <TableCell key={name} sx={{ fontWeight: 'bold' }}>
+                  {name}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>

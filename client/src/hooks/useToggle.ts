@@ -6,7 +6,7 @@ export const useToggle = () => {
     setOpen(true)
   }
   const off = () => {
-    setOpen(true)
+    setOpen(false)
   }
   return { open, on, off }
 }

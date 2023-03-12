@@ -8,10 +8,6 @@ import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
-import Dialog from '@mui/material/Dialog'
-import DialogTitle from '@mui/material/DialogTitle'
-import DialogActions from '@mui/material/DialogActions'
-import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 
 import ContentCenter from '@/components/presentations/ContentCenter'
@@ -19,6 +15,7 @@ import IconButton from '@/components/presentations/atoms/IconButton'
 import { enhancedApi } from '@/store/api/codegen/user'
 import Link from '@/components/presentations/Link'
 import { useToggle } from '@/hooks/useToggle'
+import ConfirmDialog from '@/components/presentations/ConfirmDialog'
 
 const StyledCardContent = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -52,6 +49,7 @@ const ProfileCard = () => {
       console.error(e)
     }
   }
+
   return (
     <ContentCenter sx={{ pt: 3 }}>
       <Paper
@@ -92,13 +90,14 @@ const ProfileCard = () => {
       >
         <Alert severity='error'>ログアウトできませんでした</Alert>
       </Snackbar>
-      <Dialog onClose={handleCloseLogoutDialog} open={openLogoutDialog}>
-        <DialogTitle>ログアウトしますか？</DialogTitle>
-        <DialogActions>
-          <Button onClick={handleCloseLogoutDialog}>キャンセル</Button>
-          <Button onClick={logout}>ログアウト</Button>
-        </DialogActions>
-      </Dialog>
+      <ConfirmDialog
+        title='ログアウトしますか？'
+        open={openLogoutDialog}
+        onClose={handleCloseLogoutDialog}
+        closeText='キャンセル'
+        onAction={logout}
+        actionText='ログアウト'
+      />
     </ContentCenter>
   )
 }

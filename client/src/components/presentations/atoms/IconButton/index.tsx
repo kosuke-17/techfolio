@@ -1,5 +1,6 @@
 import { SvgIconComponent } from '@mui/icons-material'
-import { IconButton as MUIIconButton, SxProps } from '@mui/material'
+import { SxProps } from '@mui/material'
+import MuiIconButton from '@mui/material/IconButton'
 
 const IconButton = ({
   icon: Icon,
@@ -11,14 +12,15 @@ const IconButton = ({
   iconSx?: SxProps
 }) => {
   return (
-    <MUIIconButton
+    <MuiIconButton
       sx={{
         bgcolor: 'common.white',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
       }}
+      onClick={onClick}
     >
       <Icon sx={iconSx} />
-    </MUIIconButton>
+    </MuiIconButton>
   )
 }
 

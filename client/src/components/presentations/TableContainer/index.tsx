@@ -1,5 +1,5 @@
 import Paper from '@mui/material/Paper'
-import { TableContainer as MUITableContainer } from '@mui/material'
+import MuiTableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -12,7 +12,7 @@ const TableContainer = (params: {
 }) => {
   const { colums, rows } = params
   return (
-    <MUITableContainer component={Paper} elevation={2}>
+    <MuiTableContainer component={Paper} elevation={2}>
       <Table>
         <TableHead>
           <TableRow>
@@ -39,7 +39,7 @@ const TableContainer = (params: {
           ))}
         </TableBody>
       </Table>
-    </MUITableContainer>
+    </MuiTableContainer>
   )
 }
 

@@ -1,22 +1,6 @@
-import EditIcon from '@mui/icons-material/Edit'
-import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import Stack from '@mui/material/Stack'
-import Box from '@mui/material/Box'
-
-import IconButton from '@/components/presentations/atoms/IconButton'
 import TableContainer from '@/components/presentations/TableContainer'
-
-const StyledUserInformation = styled(Stack)(({ theme }) => ({
-  height: 600,
-  paddingTop: theme.spacing(2),
-}))
-
-const StyledTableHeader = styled(Box)(({ theme }) => ({
-  paddingTop: theme.spacing(2),
-  display: 'flex',
-  justifyContent: 'space-between',
-}))
+import TableHeader from '@/components/presentations/TableHeader'
+import LayoutTable from '@/components/presentations/LayoutTable'
 
 const UserInformation = () => {
   const colums = [{ name: '項目名' }, { name: '内容' }]
@@ -32,18 +16,12 @@ const UserInformation = () => {
   const goToEdit = () => {
     console.log('基本情報編集ページに遷移')
   }
+
   return (
-    <StyledUserInformation spacing={2}>
-      <StyledTableHeader>
-        <Typography variant='h5'>基本情報</Typography>
-        <IconButton
-          icon={EditIcon}
-          onClick={goToEdit}
-          iconSx={{ color: 'common.black', fontSize: '16px' }}
-        />
-      </StyledTableHeader>
+    <LayoutTable>
+      <TableHeader title='基本情報' onClick={goToEdit} />
       <TableContainer colums={colums} rows={rows} />
-    </StyledUserInformation>
+    </LayoutTable>
   )
 }
 

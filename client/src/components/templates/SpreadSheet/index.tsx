@@ -8,21 +8,21 @@ import { styled } from '@mui/material/styles'
 import ContentCenter from '@/components/presentations/ContentCenter'
 import UserInformation from '@/components/templates/UserInformation'
 import IconButton from '@/components/presentations/atoms/IconButton'
+import PortfolioUrlList from '@/components/templates/PortfolioUrlList'
 
 const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
-  paddingTop: theme.spacing(3),
   display: 'flex',
   justifyContent: 'space-between',
 }))
 
-const download = () => {
-  console.log('ダウンロード処理')
-}
-
 const SpreadSheet = () => {
+  const download = () => {
+    console.log('ダウンロード処理')
+  }
+
   return (
-    <ContentCenter sx={{ pt: 3 }}>
-      <Paper sx={{ borderRadius: 10, px: 3 }} elevation={3}>
+    <ContentCenter sx={{ py: 3 }}>
+      <Paper sx={{ py: 3, borderRadius: 10, px: 3 }} elevation={3}>
         <StyledSpreadSheetHeader>
           <Typography variant='h3'>SpreadSheet</Typography>
           <IconButton
@@ -33,6 +33,8 @@ const SpreadSheet = () => {
         </StyledSpreadSheetHeader>
 
         <UserInformation />
+
+        <PortfolioUrlList />
       </Paper>
     </ContentCenter>
   )

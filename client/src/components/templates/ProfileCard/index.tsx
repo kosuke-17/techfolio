@@ -1,6 +1,7 @@
-import Box from '@mui/material/Box'
+import { useState } from 'react'
 import Paper from '@mui/material/Paper'
-import React from 'react'
+import LogoutIcon from '@mui/icons-material/Logout'
+import GitHubIcon from '@mui/icons-material/GitHub'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
@@ -8,23 +9,44 @@ import { styled } from '@mui/material/styles'
 import ContentCenter from '@/components/presentations/ContentCenter'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
+import IconButton from '@/components/presentations/atoms/IconButton'
+import { enhancedApi } from '@/store/api/codegen/user'
+import { useRouter } from 'next/router'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 
 const StyledCardContent = styled(Stack)(({ theme }) => ({
-  paddingLeft: theme.spacing(3),
-  paddingRight: theme.spacing(3),
-  paddingTop: theme.spacing(3),
+  padding: theme.spacing(3),
   display: 'column',
   alignItems: 'center',
 }))
 
 const ProfileCard = () => {
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+  const [logoutMutation] = enhancedApi.useUsersControllerLogoutMutation()
+
+  const onCloseSnackbar = () => {
+    setOpen(false)
+  }
+  const logout = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) return
+    try {
+      await logoutMutation({ updateUserSecretDto: { token } }).unwrap()
+      localStorage.setItem('token', '')
+      router.push('/login')
+    } catch (e) {
+      setOpen(true)
+      console.error(e)
+    }
+  }
   return (
     <ContentCenter sx={{ pt: 3 }}>
       <Paper
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          height: 300,
           width: 200,
           borderRadius: 10,
         }}
@@ -36,11 +58,25 @@ const ProfileCard = () => {
           <Typography sx={{ textAlign: 'center' }} variant='body1'>
             フロントエンドエンジニア
           </Typography>
-          <Button sx={{ borderRadius: 10, py: 1, px: 3 }} variant='contained'>
-            Github
-          </Button>
+          <IconButton
+            icon={GitHubIcon}
+            iconSx={{ color: 'common.black', fontSize: '24px' }}
+          />
+          <IconButton
+            onClick={logout}
+            icon={LogoutIcon}
+            iconSx={{ color: 'common.black', fontSize: '24px' }}
+          />
         </StyledCardContent>
       </Paper>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        onClose={onCloseSnackbar}
+        autoHideDuration={6000}
+      >
+        <Alert severity='error'>ログアウトできませんでした</Alert>
+      </Snackbar>
     </ContentCenter>
   )
 }

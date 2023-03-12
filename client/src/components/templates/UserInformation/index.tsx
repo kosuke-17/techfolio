@@ -29,12 +29,16 @@ const UserInformation = () => {
     { name: 'エンジニア歴', content: '1年5ヶ月' },
     { name: 'IT全体歴', content: '1年8ヶ月' },
   ]
+  const goToEdit = () => {
+    console.log('基本情報編集ページに遷移')
+  }
   return (
     <StyledUserInformation spacing={2}>
       <StyledTableHeader>
         <Typography variant='h5'>基本情報</Typography>
         <IconButton
           icon={EditIcon}
+          onClick={goToEdit}
           iconSx={{ color: 'common.black', fontSize: '16px' }}
         />
       </StyledTableHeader>

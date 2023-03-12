@@ -15,6 +15,10 @@ const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
 }))
 
+const download = () => {
+  console.log('ダウンロード処理')
+}
+
 const SpreadSheet = () => {
   return (
     <ContentCenter sx={{ pt: 3 }}>
@@ -23,6 +27,7 @@ const SpreadSheet = () => {
           <Typography variant='h3'>SpreadSheet</Typography>
           <IconButton
             icon={CloudDownloadIcon}
+            onClick={download}
             iconSx={{ color: 'common.black', fontSize: '32px' }}
           />
         </StyledSpreadSheetHeader>

@@ -1,12 +1,24 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common'
+import { User } from '@prisma/client'
+import { BearerAuthGuard } from 'src/auth/bearer-auth.guard'
 
 import { CreateUserDto } from './dtos/create-user.dto'
 import { UserCreateResponseDto } from './dtos/response-create-user.dto'
 import { UserResponseDto } from './dtos/response-user.dto'
 import { UpdateUserSecretDto } from './dtos/update-user-secret.dto'
+import { LoginUser } from './users.decorator'
 import { UsersService } from './users.service'
 
 @Controller('users')
+@UseGuards(BearerAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -20,8 +32,9 @@ export class UsersController {
     return this.usersService.findOne(id)
   }
 
-  @Put('/logout')
+  @Put('logout')
   async logout(
+    @LoginUser() user: User,
     @Body() updateUserSecretDto: UpdateUserSecretDto,
   ): Promise<void> {
     this.usersService.logoutByToken(updateUserSecretDto)

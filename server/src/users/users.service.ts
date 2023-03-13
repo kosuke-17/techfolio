@@ -50,7 +50,7 @@ export class UsersService {
   async loginByToken(token: string) {
     const userSecret = await this.prisma.userSecret.findFirst({
       where: { token },
-      include: { user: true },
+      include: { user: { select: { id: true } } },
     })
 
     if (!userSecret) {
@@ -66,17 +66,21 @@ export class UsersService {
     })
     if (!secret) throw new NotFoundException('secret not found')
 
-    await this.prisma.userSecret.update({
-      where: { id: secret.id },
-      data: { token: null },
-    })
+    try {
+      await this.prisma.userSecret.update({
+        where: { id: secret.id },
+        data: { token: null },
+      })
+    } catch (e) {
+      this.logger.error('failed to logout', e)
+    }
   }
 
   async findAll(): Promise<User[]> {
     try {
       return await this.prisma.user.findMany()
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error('failed to find All user', e)
     }
   }
 

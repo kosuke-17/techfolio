@@ -9,6 +9,7 @@ import ContentCenter from '@/components/presentations/ContentCenter'
 import UserInformation from '@/components/templates/UserInformation'
 import IconButton from '@/components/presentations/atoms/IconButton'
 import PortfolioUrlList from '@/components/templates/PortfolioUrlList'
+import SkillInformation from '../SkillInformation'
 
 const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -35,6 +36,8 @@ const SpreadSheet = () => {
         <UserInformation />
 
         <PortfolioUrlList />
+
+        <SkillInformation />
       </Paper>
     </ContentCenter>
   )

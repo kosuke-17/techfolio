@@ -1,7 +1,6 @@
 import LayoutTable from '@/components/presentations/LayoutTable'
 import TableHeader from '@/components/presentations/TableHeader'
-import React from 'react'
-import TableContainer from '../../presentations/TableContainer'
+import TableContainer from '@/components/presentations/TableContainer'
 
 const PortfolioUrlList = () => {
   const colums = [{ name: 'URL名' }, { name: 'Link' }]

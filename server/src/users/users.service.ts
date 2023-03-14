@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common'
 import { User, Prisma, UserSecret } from '@prisma/client'
 import { v4 as uuid } from 'uuid'
-// import bcrypt from 'bcrypt'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { LoggerService } from 'src/logger/logger.service'
 import { CreateUserDto } from './dtos/create-user.dto'
@@ -48,16 +47,20 @@ export class UsersService {
   }
 
   async loginByToken(token: string) {
-    const userSecret = await this.prisma.userSecret.findFirst({
-      where: { token },
-      include: { user: { select: { id: true } } },
-    })
+    try {
+      const userSecret = await this.prisma.userSecret.findFirst({
+        where: { token },
+        select: { user: { select: { id: true } } },
+      })
 
-    if (!userSecret) {
-      throw new UnauthorizedException('user not found when login by token')
+      if (!userSecret) {
+        throw new UnauthorizedException('user not found when login by token')
+      }
+
+      return { data: userSecret.user }
+    } catch (e) {
+      this.logger.log(e)
     }
-
-    return { data: userSecret.user }
   }
 
   async logoutByToken(updateUserSecretDto: UpdateUserSecretDto) {
@@ -72,7 +75,7 @@ export class UsersService {
         data: { token: null },
       })
     } catch (e) {
-      this.logger.error('failed to logout', e)
+      this.logger.log(e)
     }
   }
 
@@ -80,19 +83,12 @@ export class UsersService {
     try {
       return await this.prisma.user.findMany()
     } catch (e) {
-      this.logger.error('failed to find All user', e)
+      this.logger.log(e)
     }
   }
 
-  // なせかエラー
-  // async generateHash(password: string): Promise<string> {
-  //   const hash = await bcrypt.hash(password, 10)
-  //   return hash
-  // }
-
   async create(createUserDto: CreateUserDto) {
     const { password, ...rest } = createUserDto
-    // const hash = await this.generateHash(password)
 
     try {
       const user = await this.prisma.user.create({
@@ -123,9 +119,7 @@ export class UsersService {
     try {
       const secret = await this.prisma.userSecret.update({
         where: { userId },
-        data: {
-          token: uuid(),
-        },
+        data: { token: uuid() },
       })
 
       return secret.token

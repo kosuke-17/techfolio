@@ -11,7 +11,7 @@ export class BearerStrategy extends PassportStrategy(Strategy) {
     super()
   }
 
-  async validate(token: string): Promise<Pick<User, 'id'>> {
+  async validate(token: string): Promise<User> {
     const { data: user } = await this.usersService.loginByToken(token)
     return user
   }

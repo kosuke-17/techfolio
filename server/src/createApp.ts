@@ -12,7 +12,7 @@ export const createApp = async () => {
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe({ transform: true }))
 
-  app.useLogger(app.get(LoggerService))
+  app.useLogger(await app.resolve(LoggerService))
 
   const document: OpenAPIObject = createSwagger(app)
   SwaggerModule.setup('api/swagger', app, document)

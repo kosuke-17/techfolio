@@ -30,7 +30,7 @@ export class UsersService {
       })
       return user
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 
@@ -42,7 +42,7 @@ export class UsersService {
       })
       return user
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 
@@ -50,7 +50,7 @@ export class UsersService {
     try {
       const userSecret = await this.prisma.userSecret.findFirst({
         where: { token },
-        select: { user: { select: { id: true } } },
+        select: { user: true },
       })
 
       if (!userSecret) {
@@ -59,7 +59,7 @@ export class UsersService {
 
       return { data: userSecret.user }
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 
@@ -75,7 +75,7 @@ export class UsersService {
         data: { token: null },
       })
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 
@@ -83,7 +83,7 @@ export class UsersService {
     try {
       return await this.prisma.user.findMany()
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 
@@ -111,7 +111,7 @@ export class UsersService {
         },
       })
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 
@@ -124,7 +124,7 @@ export class UsersService {
 
       return secret.token
     } catch (e) {
-      this.logger.log(e)
+      this.logger.error(e)
     }
   }
 

@@ -7,14 +7,14 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common'
-import { User } from '@prisma/client'
 import { BearerAuthGuard } from 'src/auth/bearer-auth.guard'
 
 import { CreateUserDto } from './dtos/create-user.dto'
 import { UserCreateResponseDto } from './dtos/response-create-user.dto'
+import { ResponseMeDto } from './dtos/response-login-user.dto'
 import { UserResponseDto } from './dtos/response-user.dto'
 import { UpdateUserSecretDto } from './dtos/update-user-secret.dto'
-import { LoginUser } from './users.decorator'
+import { LoginUser } from '../auth/decolators/users.decorator'
 import { UsersService } from './users.service'
 
 @Controller('users')
@@ -27,6 +27,11 @@ export class UsersController {
     return this.usersService.findAll()
   }
 
+  @Get('me')
+  async findMe(@LoginUser() user: ResponseMeDto): Promise<ResponseMeDto> {
+    return user
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<UserResponseDto> {
     return this.usersService.findOne(id)
@@ -34,7 +39,6 @@ export class UsersController {
 
   @Put('logout')
   async logout(
-    @LoginUser() user: User,
     @Body() updateUserSecretDto: UpdateUserSecretDto,
   ): Promise<void> {
     this.usersService.logoutByToken(updateUserSecretDto)

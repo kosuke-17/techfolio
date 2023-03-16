@@ -10,3 +10,5 @@ export class ResponseLoginUserDto extends UserEntity {
   @ApiProperty({ type: SecretForResponseLoginUser })
   secret: UserSecretEntity
 }
+
+export class ResponseMeDto extends UserEntity {}

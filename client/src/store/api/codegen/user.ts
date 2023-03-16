@@ -23,6 +23,12 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: (queryArg) => ({ url: `/api/users/${queryArg.id}` }),
     }),
+    usersControllerFindMe: build.query<
+      UsersControllerFindMeApiResponse,
+      UsersControllerFindMeApiArg
+    >({
+      query: () => ({ url: `/api/users/me` }),
+    }),
     usersControllerLogout: build.mutation<
       UsersControllerLogoutApiResponse,
       UsersControllerLogoutApiArg
@@ -50,6 +56,8 @@ export type UsersControllerFindOneApiResponse =
 export type UsersControllerFindOneApiArg = {
   id: string;
 };
+export type UsersControllerFindMeApiResponse = /** status 200  */ ResponseMeDto;
+export type UsersControllerFindMeApiArg = void;
 export type UsersControllerLogoutApiResponse = unknown;
 export type UsersControllerLogoutApiArg = {
   updateUserSecretDto: UpdateUserSecretDto;
@@ -71,6 +79,13 @@ export type CreateUserDto = {
   email: string;
   password: string;
 };
+export type ResponseMeDto = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+};
 export type UpdateUserSecretDto = {
   token: string;
 };
@@ -78,5 +93,6 @@ export const {
   useUsersControllerFindAllQuery,
   useUsersControllerCreateMutation,
   useUsersControllerFindOneQuery,
+  useUsersControllerFindMeQuery,
   useUsersControllerLogoutMutation,
 } = injectedRtkApi;

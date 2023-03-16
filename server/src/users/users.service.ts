@@ -50,14 +50,18 @@ export class UsersService {
     try {
       const userSecret = await this.prisma.userSecret.findFirst({
         where: { token },
-        select: { user: true },
+        select: { user: { select: { id: true } } },
       })
 
-      if (!userSecret) {
-        throw new UnauthorizedException('user not found when login by token')
-      }
+      if (!userSecret) throw new UnauthorizedException('user secret not found')
 
-      return { data: userSecret.user }
+      const user = await this.prisma.user.findFirst({
+        where: { id: userSecret.user.id },
+      })
+
+      if (!user) throw new UnauthorizedException('user not found')
+
+      return user
     } catch (e) {
       this.logger.error(e)
     }

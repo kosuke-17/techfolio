@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport'
 import { Injectable } from '@nestjs/common'
 
 import { UsersService } from 'src/users/users.service'
-import { User } from '@prisma/client'
+import { ResponseMeDto } from 'src/users/dtos/response-login-user.dto'
 
 @Injectable()
 export class BearerStrategy extends PassportStrategy(Strategy) {
@@ -11,8 +11,8 @@ export class BearerStrategy extends PassportStrategy(Strategy) {
     super()
   }
 
-  async validate(token: string): Promise<User> {
-    const { data: user } = await this.usersService.loginByToken(token)
+  async validate(token: string) {
+    const user: ResponseMeDto = await this.usersService.loginByToken(token)
     return user
   }
 }

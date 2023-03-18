@@ -16,6 +16,7 @@ import { enhancedApi } from '@/store/api/codegen/user'
 import Link from '@/components/presentations/Link'
 import { useToggle } from '@/hooks/useToggle'
 import ConfirmDialog from '@/components/presentations/ConfirmDialog'
+import { getMe } from '@/hooks/api/user'
 
 const StyledCardContent = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -31,6 +32,8 @@ const ProfileCard = () => {
     off: handleCloseLogoutDialog,
   } = useToggle()
   const router = useRouter()
+  const me = getMe()
+
   const [logoutMutation] = enhancedApi.useUsersControllerLogoutMutation()
 
   const onCloseSnackbar = () => {
@@ -50,6 +53,8 @@ const ProfileCard = () => {
     }
   }
 
+  if (!me) return null
+
   return (
     <ContentCenter sx={{ pt: 3 }}>
       <Paper
@@ -63,7 +68,7 @@ const ProfileCard = () => {
       >
         <StyledCardContent spacing={2}>
           <Avatar sx={{ width: 72, height: 72 }} />
-          <Typography variant='h5'>田中太郎</Typography>
+          <Typography variant='h5'>{me.lastName + me.firstName}</Typography>
           <Typography sx={{ textAlign: 'center' }} variant='body1'>
             フロントエンドエンジニア
           </Typography>

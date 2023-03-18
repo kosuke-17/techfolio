@@ -17,17 +17,17 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.createUserDto,
       }),
     }),
-    usersControllerFindOne: build.query<
-      UsersControllerFindOneApiResponse,
-      UsersControllerFindOneApiArg
-    >({
-      query: (queryArg) => ({ url: `/api/users/${queryArg.id}` }),
-    }),
     usersControllerFindMe: build.query<
       UsersControllerFindMeApiResponse,
       UsersControllerFindMeApiArg
     >({
       query: () => ({ url: `/api/users/me` }),
+    }),
+    usersControllerFindOne: build.query<
+      UsersControllerFindOneApiResponse,
+      UsersControllerFindOneApiArg
+    >({
+      query: (queryArg) => ({ url: `/api/users/${queryArg.id}` }),
     }),
     usersControllerLogout: build.mutation<
       UsersControllerLogoutApiResponse,
@@ -51,13 +51,13 @@ export type UsersControllerCreateApiResponse =
 export type UsersControllerCreateApiArg = {
   createUserDto: CreateUserDto;
 };
+export type UsersControllerFindMeApiResponse = /** status 200  */ ResponseMeDto;
+export type UsersControllerFindMeApiArg = void;
 export type UsersControllerFindOneApiResponse =
   /** status 200  */ UserResponseDto;
 export type UsersControllerFindOneApiArg = {
   id: string;
 };
-export type UsersControllerFindMeApiResponse = /** status 200  */ ResponseMeDto;
-export type UsersControllerFindMeApiArg = void;
 export type UsersControllerLogoutApiResponse = unknown;
 export type UsersControllerLogoutApiArg = {
   updateUserSecretDto: UpdateUserSecretDto;
@@ -92,7 +92,7 @@ export type UpdateUserSecretDto = {
 export const {
   useUsersControllerFindAllQuery,
   useUsersControllerCreateMutation,
-  useUsersControllerFindOneQuery,
   useUsersControllerFindMeQuery,
+  useUsersControllerFindOneQuery,
   useUsersControllerLogoutMutation,
 } = injectedRtkApi;

@@ -1,58 +1,21 @@
-import { useState } from 'react'
 import Button from '@mui/material/Button'
 import CardActions from '@mui/material/CardActions'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
 import {
   StyledCard,
   StyledCardContent,
 } from '@/components/presentations/atoms/StyledCard'
 import CustomTextField from '@/components/presentations/CustomTextField'
 import Stack from '@mui/material/Stack'
-import { enhancedApi } from '@/store/api/codegen/user'
-import { requiredEmailString, requiredString } from '@/zod/common'
-import { useRouter } from 'next/router'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 
-const userCreateSchema = z.object({
-  firstName: requiredString,
-  lastName: requiredString,
-  email: requiredEmailString,
-  password: requiredString,
-})
-export type DefaultValues = z.infer<typeof userCreateSchema>
+import { useHooks } from './hooks'
 
 const UserCreateCard = () => {
-  const router = useRouter()
-  const [createMutation] = enhancedApi.useUsersControllerCreateMutation()
-  const [open, setOpen] = useState(false)
-
-  const onCloseSnackbar = () => {
-    setOpen(false)
-  }
-
-  const create = async (createUserDto: DefaultValues) => {
-    try {
-      const user = await createMutation({ createUserDto }).unwrap()
-
-      localStorage.setItem('token', user.secret.token)
-      router.push('/login')
-      setOpen(true)
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  const { control, handleSubmit } = useForm<DefaultValues>({
-    resolver: zodResolver(userCreateSchema),
-  })
-
+  const { open, onCloseSnackbar, onSubmit, control } = useHooks()
   return (
     <StyledCard>
-      <form onSubmit={handleSubmit(create)}>
+      <form onSubmit={onSubmit}>
         <StyledCardContent>
           <Stack spacing={1}>
             <CustomTextField

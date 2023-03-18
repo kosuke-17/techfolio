@@ -10,6 +10,7 @@ import UserInformation from '@/components/templates/UserInformation'
 import IconButton from '@/components/presentations/atoms/IconButton'
 import PortfolioUrlList from '@/components/templates/PortfolioUrlList'
 import SkillInformation from '../SkillInformation'
+import { useHooks } from './hooks'
 
 const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -17,10 +18,7 @@ const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
 }))
 
 const SpreadSheet = () => {
-  const download = () => {
-    console.log('ダウンロード処理')
-  }
-
+  const { download } = useHooks()
   return (
     <ContentCenter sx={{ py: 3 }}>
       <Paper sx={{ py: 3, borderRadius: 10, px: 3 }} elevation={3}>

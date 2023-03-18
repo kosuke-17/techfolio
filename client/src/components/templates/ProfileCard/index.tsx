@@ -1,22 +1,18 @@
-import { useState } from 'react'
 import Paper from '@mui/material/Paper'
 import LogoutIcon from '@mui/icons-material/Logout'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
-import { useRouter } from 'next/router'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 import Stack from '@mui/material/Stack'
 
 import ContentCenter from '@/components/presentations/ContentCenter'
 import IconButton from '@/components/presentations/atoms/IconButton'
-import { enhancedApi } from '@/store/api/codegen/user'
 import Link from '@/components/presentations/Link'
-import { useToggle } from '@/hooks/useToggle'
 import ConfirmDialog from '@/components/presentations/ConfirmDialog'
-import { getMe } from '@/hooks/api/user'
+import { useHooks } from './hooks'
 
 const StyledCardContent = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -25,34 +21,15 @@ const StyledCardContent = styled(Stack)(({ theme }) => ({
 }))
 
 const ProfileCard = () => {
-  const [open, setOpen] = useState(false)
   const {
-    open: openLogoutDialog,
-    on: handleOpenLogoutDialog,
-    off: handleCloseLogoutDialog,
-  } = useToggle()
-  const router = useRouter()
-  const me = getMe()
-
-  const [logoutMutation] = enhancedApi.useUsersControllerLogoutMutation()
-
-  const onCloseSnackbar = () => {
-    setOpen(false)
-  }
-
-  const logout = async () => {
-    const token = localStorage.getItem('token')
-    if (!token) return
-    try {
-      await logoutMutation({ updateUserSecretDto: { token } }).unwrap()
-      localStorage.setItem('token', '')
-      router.push('/login')
-    } catch (e) {
-      setOpen(true)
-      console.error(e)
-    }
-  }
-
+    me,
+    open,
+    openLogoutDialog,
+    handleOpenLogoutDialog,
+    handleCloseLogoutDialog,
+    onCloseSnackbar,
+    logout,
+  } = useHooks()
   if (!me) return null
 
   return (

@@ -2,11 +2,6 @@ import Button from '@mui/material/Button'
 import CardActions from '@mui/material/CardActions'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { useState } from 'react'
-import { useRouter } from 'next/router'
 
 import {
   StyledCard,
@@ -14,41 +9,15 @@ import {
 } from '@/components/presentations/atoms/StyledCard'
 import CustomTextField from '@/components/presentations/CustomTextField'
 import Stack from '@mui/material/Stack'
-import { enhancedApi } from '@/store/api/codegen/app'
 import Link from '@/components/presentations/Link'
-import { requiredEmailString, requiredString } from '@/zod/common'
-
-const loginSchema = z.object({
-  email: requiredEmailString,
-  password: requiredString,
-})
-export type DefaultValues = z.infer<typeof loginSchema>
+import { useHooks } from './hooks'
 
 const Login = () => {
-  const router = useRouter()
-  const [open, setOpen] = useState(false)
-  const [loginMutation] = enhancedApi.useAppControllerLoginMutation()
-  const onCloseSnackbar = () => {
-    setOpen(false)
-  }
-  const login = async (loginDto: DefaultValues) => {
-    try {
-      const user = await loginMutation({ loginDto }).unwrap()
-      localStorage.setItem('token', user.secret.token)
-      router.push('/home')
-    } catch (e) {
-      setOpen(true)
-      console.error(e)
-    }
-  }
-
-  const { control, handleSubmit } = useForm<DefaultValues>({
-    resolver: zodResolver(loginSchema),
-  })
+  const { control, onSubmit, open, onCloseSnackbar } = useHooks()
 
   return (
     <StyledCard>
-      <form onSubmit={handleSubmit(login)}>
+      <form onSubmit={onSubmit}>
         <StyledCardContent>
           <Stack spacing={1}>
             <CustomTextField

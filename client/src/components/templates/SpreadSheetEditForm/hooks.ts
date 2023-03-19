@@ -16,9 +16,14 @@ export const useHooks = () => {
   const handleChange = (_: SyntheticEvent, selectedTabType: TabType) => {
     router.push({ query: { type: selectedTabType } })
   }
+
+  const onGoToBack = () => {
+    router.push({ pathname: '/spread-sheet' })
+  }
   return {
     tabs,
     value: tabType,
+    onGoToBack,
     handleChange,
   }
 }

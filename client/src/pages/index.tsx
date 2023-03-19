@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(() => {
     const loginToken = localStorage.getItem('token')
     if (loginToken) {
-      router.push('/home')
+      router.push('/spread-sheet')
     } else {
       router.push('/login')
     }

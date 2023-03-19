@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import SpreadSheet from '@/components/templates/SpreadSheet'
 import ProfileCard from '@/components/templates/ProfileCard'
 
-const HomePage = () => {
+const SpreadSheetPage = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container>
@@ -22,4 +22,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default SpreadSheetPage

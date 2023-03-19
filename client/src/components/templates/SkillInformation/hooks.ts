@@ -1,4 +1,11 @@
-export const useHooks = () => {
+import { useRouter } from 'next/router'
+
+import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
+
+type Props = { tabType: TabType }
+
+export const useHooks = ({ tabType }: Props) => {
+  const router = useRouter()
   const colums = [{ name: '項目名' }, { name: '内容' }]
   const rows = [
     { name: '動作環境(OS)', contents: ['Mac', 'Linux'] },
@@ -19,7 +26,10 @@ export const useHooks = () => {
     { name: '担当開発工程', contents: ['開発', '単体テスト'] },
   ]
   const goToEdit = () => {
-    console.log('基本情報編集ページに遷移')
+    router.push({
+      pathname: '/spread-sheet/edit',
+      query: { type: tabType },
+    })
   }
 
   return {

@@ -31,11 +31,11 @@ const SpreadSheet = () => {
           />
         </StyledSpreadSheetHeader>
 
-        <UserInformation />
+        <UserInformation tabType='info' />
 
-        <PortfolioUrlList />
+        <PortfolioUrlList tabType='portfolio' />
 
-        <SkillInformation />
+        <SkillInformation tabType='skill' />
       </Paper>
     </ContentCenter>
   )

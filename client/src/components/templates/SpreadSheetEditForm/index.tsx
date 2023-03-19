@@ -20,14 +20,7 @@ const StyledTabLabelBox = styled(Box)(() => ({
 }))
 
 const SpreadSheetEditForm = () => {
-  const { value, handleChange } = useHooks()
-
-  // TODO:labelはバックエンドから渡したい
-  const tabs = [
-    { label: '基本情報', value: 'info' },
-    { label: 'ポートフォリオ', value: 'portfolio' },
-    { label: 'スキル要約', value: 'skill' },
-  ]
+  const { tabs, value, handleChange } = useHooks()
 
   return (
     <ContentCenter sx={{ py: 3 }}>

@@ -141,6 +141,57 @@
           }
         }
       }
+    },
+    "/api/user-informations": {
+      "post": {
+        "operationId": "UserInformationsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserInformationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user-informations/{id}": {
+      "put": {
+        "operationId": "UserInformationsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserInformationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "info": {
@@ -328,6 +379,99 @@
         "required": [
           "id",
           "secret"
+        ]
+      },
+      "CreateUserInformationDto": {
+        "type": "object",
+        "properties": {
+          "stuffId": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "gender": {
+            "type": "object"
+          },
+          "nearestStation": {
+            "type": "string"
+          },
+          "startWorkDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "seExpAmount": {
+            "type": "number"
+          },
+          "pgExpAmount": {
+            "type": "number"
+          },
+          "itExpAmount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "stuffId",
+          "age",
+          "gender",
+          "nearestStation",
+          "startWorkDate",
+          "seExpAmount",
+          "pgExpAmount",
+          "itExpAmount"
+        ]
+      },
+      "UpdateUserInformationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "stuffId": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "gender": {
+            "type": "number"
+          },
+          "nearestStation": {
+            "type": "number"
+          },
+          "startWorkDate": {
+            "type": "number"
+          },
+          "seExpAmount": {
+            "type": "number"
+          },
+          "pgExpAmount": {
+            "type": "number"
+          },
+          "itExpAmount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
+          "stuffId",
+          "age",
+          "gender",
+          "nearestStation",
+          "startWorkDate",
+          "seExpAmount",
+          "pgExpAmount",
+          "itExpAmount"
         ]
       }
     }

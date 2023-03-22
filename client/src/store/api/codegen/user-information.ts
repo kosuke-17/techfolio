@@ -34,10 +34,11 @@ export type UserInformationsControllerUpdateApiArg = {
   id: string;
   updateUserInformationDto: UpdateUserInformationDto;
 };
+export type Gender = "MALE" | "FEMALE";
 export type CreateUserInformationDto = {
   stuffId: string;
   age: number;
-  gender: object;
+  gender: Gender;
   nearestStation: string;
   startWorkDate: string;
   seExpAmount: number;
@@ -45,14 +46,11 @@ export type CreateUserInformationDto = {
   itExpAmount: number;
 };
 export type UpdateUserInformationDto = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
   stuffId: string;
   age: number;
-  gender: number;
-  nearestStation: number;
-  startWorkDate: number;
+  gender: Gender;
+  nearestStation: string;
+  startWorkDate: string;
   seExpAmount: number;
   pgExpAmount: number;
   itExpAmount: number;

@@ -1,34 +1,8 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator'
+import { OmitType } from '@nestjs/swagger'
+import { UserInformationEntity } from '../entities/user-information.entity'
 
-export class CreateUserInformationDto {
-  @IsNotEmpty()
-  @IsString()
-  stuffId: string
-
-  @IsNotEmpty()
-  @IsNumber()
-  age: number
-
-  @IsNotEmpty()
-  gender: 'MALE' | 'FEMALE'
-
-  @IsNotEmpty()
-  @IsString()
-  nearestStation: string
-
-  @IsNotEmpty()
-  @IsDate()
-  startWorkDate: Date
-
-  @IsNotEmpty()
-  @IsNumber()
-  seExpAmount: number
-
-  @IsNotEmpty()
-  @IsNumber()
-  pgExpAmount: number
-
-  @IsNotEmpty()
-  @IsNumber()
-  itExpAmount: number
-}
+export class CreateUserInformationDto extends OmitType(UserInformationEntity, [
+  'id',
+  'createdAt',
+  'updatedAt',
+]) {}

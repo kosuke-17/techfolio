@@ -381,6 +381,13 @@
           "secret"
         ]
       },
+      "GENDER": {
+        "type": "string",
+        "enum": [
+          "MALE",
+          "FEMALE"
+        ]
+      },
       "CreateUserInformationDto": {
         "type": "object",
         "properties": {
@@ -391,7 +398,7 @@
             "type": "number"
           },
           "gender": {
-            "type": "object"
+            "$ref": "#/components/schemas/GENDER"
           },
           "nearestStation": {
             "type": "string"
@@ -424,17 +431,6 @@
       "UpdateUserInformationDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          },
           "stuffId": {
             "type": "string"
           },
@@ -442,13 +438,14 @@
             "type": "number"
           },
           "gender": {
-            "type": "number"
+            "$ref": "#/components/schemas/GENDER"
           },
           "nearestStation": {
-            "type": "number"
+            "type": "string"
           },
           "startWorkDate": {
-            "type": "number"
+            "format": "date-time",
+            "type": "string"
           },
           "seExpAmount": {
             "type": "number"
@@ -461,9 +458,6 @@
           }
         },
         "required": [
-          "id",
-          "createdAt",
-          "updatedAt",
           "stuffId",
           "age",
           "gender",

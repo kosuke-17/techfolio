@@ -9,7 +9,6 @@ type Props = {
 }
 
 const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme, error }) => ({
-  width: '100%',
   borderRadius: theme.shape.borderRadius,
   '& .MuiOutlinedInput-notchedOutline': error
     ? null

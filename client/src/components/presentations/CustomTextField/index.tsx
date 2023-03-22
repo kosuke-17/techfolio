@@ -3,7 +3,7 @@ import { useController, Control } from 'react-hook-form'
 import InputLabel from '@mui/material/InputLabel'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
-import { styled } from '@mui/material/styles'
+import { styled, SxProps } from '@mui/material/styles'
 import FormHelperText from '@mui/material/FormHelperText'
 import ErrorIcon from '@mui/icons-material/Error'
 import type { OutlinedInputProps } from '@mui/material/OutlinedInput'
@@ -13,7 +13,7 @@ import OutlinedInput from '@/components/presentations//OutlinedInput'
 type Props = {
   name: string
   control: Control<any>
-  defaultValue: string
+  defaultValue: string | number | Date
   label?: string
   placeholder?: string
   variant?: string
@@ -21,6 +21,8 @@ type Props = {
   multiline?: boolean
   minRows?: number
   inputProps?: OutlinedInputProps
+  sx?: SxProps
+  suffixLabel?: string
 }
 
 const StyledInputLabel = styled(InputLabel)(() => ({
@@ -29,6 +31,8 @@ const StyledInputLabel = styled(InputLabel)(() => ({
 }))
 
 const StyledOutlinedInputBox = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'end',
   position: 'relative',
   backgroundColor: theme.palette.common.white,
   marginTop: theme.spacing(2),
@@ -40,6 +44,7 @@ const CustomTextField: FC<Props> = ({
   control,
   label,
   readOnly = false,
+  suffixLabel,
   ...rest
 }) => {
   const {
@@ -67,6 +72,7 @@ const CustomTextField: FC<Props> = ({
           {...rest}
           {...field}
         />
+        {suffixLabel}
       </StyledOutlinedInputBox>
 
       {error ? (

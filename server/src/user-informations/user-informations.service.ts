@@ -12,6 +12,19 @@ export class UserInformationsService {
     private readonly logger: LoggerService,
   ) {}
 
+  async findOne(id: string) {
+    try {
+      const userInformation = await this.prisma.userInformation.findFirst({
+        where: { id },
+      })
+      if (!userInformation)
+        throw new NotFoundException('user information not found')
+      return userInformation
+    } catch (e) {
+      this.logger.error(e)
+    }
+  }
+
   async create(
     user: Pick<ResponseMeDto, 'id'>,
     createUserInformationDto: CreateUserInformationDto,

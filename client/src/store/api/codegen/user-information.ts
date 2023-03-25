@@ -11,6 +11,12 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.createUserInformationDto,
       }),
     }),
+    userInformationsControllerFindOne: build.query<
+      UserInformationsControllerFindOneApiResponse,
+      UserInformationsControllerFindOneApiArg
+    >({
+      query: (queryArg) => ({ url: `/api/user-informations/${queryArg.id}` }),
+    }),
     userInformationsControllerUpdate: build.mutation<
       UserInformationsControllerUpdateApiResponse,
       UserInformationsControllerUpdateApiArg
@@ -29,6 +35,11 @@ export type UserInformationsControllerCreateApiResponse = unknown;
 export type UserInformationsControllerCreateApiArg = {
   createUserInformationDto: CreateUserInformationDto;
 };
+export type UserInformationsControllerFindOneApiResponse =
+  /** status 200  */ UserInformationResponseDto;
+export type UserInformationsControllerFindOneApiArg = {
+  id: string;
+};
 export type UserInformationsControllerUpdateApiResponse = unknown;
 export type UserInformationsControllerUpdateApiArg = {
   id: string;
@@ -36,6 +47,19 @@ export type UserInformationsControllerUpdateApiArg = {
 };
 export type Gender = "MALE" | "FEMALE";
 export type CreateUserInformationDto = {
+  stuffId: string;
+  age: number;
+  gender: Gender;
+  nearestStation: string;
+  startWorkDate: string;
+  seExpAmount: number;
+  pgExpAmount: number;
+  itExpAmount: number;
+};
+export type UserInformationResponseDto = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
   stuffId: string;
   age: number;
   gender: Gender;
@@ -57,5 +81,6 @@ export type UpdateUserInformationDto = {
 };
 export const {
   useUserInformationsControllerCreateMutation,
+  useUserInformationsControllerFindOneQuery,
   useUserInformationsControllerUpdateMutation,
 } = injectedRtkApi;

@@ -164,6 +164,31 @@
       }
     },
     "/api/user-informations/{id}": {
+      "get": {
+        "operationId": "UserInformationsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInformationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "operationId": "UserInformationsController_update",
         "parameters": [
@@ -292,6 +317,17 @@
           "lastName"
         ]
       },
+      "UserInformationForResponseMe": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
       "ResponseMeDto": {
         "type": "object",
         "properties": {
@@ -311,6 +347,9 @@
           },
           "lastName": {
             "type": "string"
+          },
+          "userInformation": {
+            "$ref": "#/components/schemas/UserInformationForResponseMe"
           }
         },
         "required": [
@@ -318,7 +357,8 @@
           "createdAt",
           "updatedAt",
           "firstName",
-          "lastName"
+          "lastName",
+          "userInformation"
         ]
       },
       "UpdateUserSecretDto": {
@@ -418,6 +458,60 @@
           }
         },
         "required": [
+          "stuffId",
+          "age",
+          "gender",
+          "nearestStation",
+          "startWorkDate",
+          "seExpAmount",
+          "pgExpAmount",
+          "itExpAmount"
+        ]
+      },
+      "UserInformationResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "stuffId": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GENDER"
+          },
+          "nearestStation": {
+            "type": "string"
+          },
+          "startWorkDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "seExpAmount": {
+            "type": "number"
+          },
+          "pgExpAmount": {
+            "type": "number"
+          },
+          "itExpAmount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
           "stuffId",
           "age",
           "gender",

@@ -79,12 +79,16 @@ export type CreateUserDto = {
   email: string;
   password: string;
 };
+export type UserInformationForResponseMe = {
+  id: string;
+};
 export type ResponseMeDto = {
   id: string;
   createdAt: string;
   updatedAt: string;
   firstName: string;
   lastName: string;
+  userInformation: UserInformationForResponseMe;
 };
 export type UpdateUserSecretDto = {
   token: string;

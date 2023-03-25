@@ -1,12 +1,14 @@
 import { z } from 'zod'
 import { useRouter } from 'next/router'
-import { SyntheticEvent } from 'react'
+import { SyntheticEvent, useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { requiredString, requiredNumber, requiredDate } from '@/zod/common'
+import { requiredString, requiredNumber } from '@/zod/common'
 import { enhancedApi } from '@/store/api/codegen/user-information'
 import { GENDER } from '@/constant/user-information'
+import { useUserInformation } from '@/hooks/api/user-information'
+import { useMe } from '@/hooks/api/user'
 
 export type TabType = 'info' | 'portfolio' | 'skill'
 
@@ -23,6 +25,7 @@ const schema = z.object({
 export type DefaultValues = z.infer<typeof schema>
 
 export const useHooks = (id?: string) => {
+  const { me } = useMe()
   const router = useRouter()
   const tabType = router.query.type as TabType
   // TODO:labelはバックエンドから渡したい
@@ -31,18 +34,40 @@ export const useHooks = (id?: string) => {
     { label: 'ポートフォリオ', value: 'portfolio' },
     { label: 'スキル要約', value: 'skill' },
   ]
+  const { userInformation } = useUserInformation({ id: me?.userInformation.id })
+
   const [createMutation] =
     enhancedApi.useUserInformationsControllerCreateMutation()
   const [updateMutation] =
     enhancedApi.useUserInformationsControllerUpdateMutation()
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<DefaultValues>({
+  const defaultValues = {
+    stuffId: '',
+    age: 0,
+    gender: GENDER.MALE,
+    nearestStation: '',
+    startWorkDate: '',
+    seExpAmount: 0,
+    pgExpAmount: 0,
+    itExpAmount: 0,
+  }
+
+  const { control, handleSubmit, setValue } = useForm<DefaultValues>({
     resolver: zodResolver(schema),
+    defaultValues,
   })
+
+  useEffect(() => {
+    if (!userInformation) return
+    setValue('stuffId', userInformation.stuffId)
+    setValue('age', userInformation.age)
+    setValue('gender', userInformation.gender)
+    setValue('nearestStation', userInformation.nearestStation)
+    setValue('startWorkDate', userInformation.startWorkDate)
+    setValue('seExpAmount', userInformation.seExpAmount)
+    setValue('pgExpAmount', userInformation.pgExpAmount)
+    setValue('itExpAmount', userInformation.itExpAmount)
+  }, [userInformation, setValue])
 
   const create = async (createUserInformationDto: DefaultValues) => {
     try {
@@ -74,7 +99,7 @@ export const useHooks = (id?: string) => {
     tabs,
     value: tabType,
     control,
-    onSubmit: handleSubmit(!id ? create : update),
+    onSubmit: handleSubmit(!userInformation?.id ? create : update),
     onGoToBack,
     handleChange,
   }

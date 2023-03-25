@@ -9,17 +9,15 @@ import { Control, useController } from 'react-hook-form'
 
 type Props = {
   name: string
-  defaultValue: typeof GENDER.MALE
   control: Control<any>
 }
-const RadioInput: FC<Props> = ({ name, control, defaultValue }) => {
+const RadioInput: FC<Props> = ({ name, control }) => {
   const {
     field,
     fieldState: { error },
   } = useController({
     name,
     control,
-    defaultValue,
   })
   return (
     <FormControl>

@@ -54,14 +54,9 @@ const SpreadSheetEditForm = () => {
                   name='stuffId'
                   label='スタッフID'
                   control={control}
-                  defaultValue=''
                 />
 
-                <RadioInput
-                  defaultValue={GENDER.MALE}
-                  control={control}
-                  name='gender'
-                />
+                <RadioInput control={control} name='gender' />
               </Stack>
               <Stack direction='row' spacing={2}>
                 <CustomTextField
@@ -71,19 +66,16 @@ const SpreadSheetEditForm = () => {
                   inputProps={{ type: 'number' }}
                   sx={{ width: '70%' }}
                   suffixLabel='歳'
-                  defaultValue={1}
                 />
                 <CustomTextField
                   name='nearestStation'
                   label='最寄駅'
                   control={control}
-                  defaultValue=''
                 />
                 <CustomTextField
                   name='startWorkDate'
                   label='稼働開始日'
                   control={control}
-                  defaultValue={new Date().toISOString()}
                 />
               </Stack>
               <Stack direction='row' spacing={2}>
@@ -91,7 +83,6 @@ const SpreadSheetEditForm = () => {
                   name='seExpAmount'
                   label='SE経験'
                   control={control}
-                  defaultValue={1}
                   inputProps={{ type: 'number' }}
                   sx={{ width: '70%' }}
                   suffixLabel='ヶ月'
@@ -100,7 +91,6 @@ const SpreadSheetEditForm = () => {
                   name='pgExpAmount'
                   label='PG・作業員経験'
                   control={control}
-                  defaultValue={1}
                   inputProps={{ type: 'number' }}
                   sx={{ width: '70%' }}
                   suffixLabel='ヶ月'
@@ -109,7 +99,6 @@ const SpreadSheetEditForm = () => {
                   name='itExpAmount'
                   label='IT全体経験'
                   control={control}
-                  defaultValue={1}
                   inputProps={{ type: 'number' }}
                   sx={{ width: '70%' }}
                   suffixLabel='ヶ月'

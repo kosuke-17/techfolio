@@ -57,6 +57,7 @@ export class UsersService {
 
       const user = await this.prisma.user.findFirst({
         where: { id: userSecret.user.id },
+        include: { userInformation: { select: { id: true } } },
       })
 
       if (!user) throw new UnauthorizedException('user not found')

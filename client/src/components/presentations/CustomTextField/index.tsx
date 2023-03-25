@@ -13,7 +13,7 @@ import OutlinedInput from '@/components/presentations//OutlinedInput'
 type Props = {
   name: string
   control: Control<any>
-  defaultValue: string | number | Date
+  defaultValue?: string | number | Date
   label?: string
   placeholder?: string
   variant?: string

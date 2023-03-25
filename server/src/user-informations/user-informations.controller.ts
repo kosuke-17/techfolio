@@ -1,8 +1,17 @@
-import { Body, Controller, Param, Post, Put, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common'
 import { BearerAuthGuard } from 'src/auth/bearer-auth.guard'
 import { LoginUser } from 'src/auth/decolators/users.decorator'
 import { ResponseMeDto } from 'src/users/dtos/response-login-user.dto'
 import { CreateUserInformationDto } from './dtos/create-user-information.dto'
+import { UserInformationResponseDto } from './dtos/response-user-information.dto'
 import { UpdateUserInformationDto } from './dtos/update-user-information.dto'
 import { UserInformationsService } from './user-informations.service'
 
@@ -19,6 +28,11 @@ export class UserInformationsController {
     @Body() createUserDto: CreateUserInformationDto,
   ): Promise<void> {
     this.userInformationsService.create(user, createUserDto)
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<UserInformationResponseDto> {
+    return this.userInformationsService.findOne(id)
   }
 
   @Put(':id')

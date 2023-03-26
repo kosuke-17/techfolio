@@ -1,4 +1,4 @@
-import { getMe } from '@/hooks/api/user'
+import { useMe } from '@/hooks/api/user'
 import { useToggle } from '@/hooks/useToggle'
 import { enhancedApi } from '@/store/api/codegen/user'
 import { useRouter } from 'next/router'
@@ -12,7 +12,7 @@ export const useHooks = () => {
     off: handleCloseLogoutDialog,
   } = useToggle()
   const router = useRouter()
-  const me = getMe()
+  const { me } = useMe()
 
   const [logoutMutation] = enhancedApi.useUsersControllerLogoutMutation()
 

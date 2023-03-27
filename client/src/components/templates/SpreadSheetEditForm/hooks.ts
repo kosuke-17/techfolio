@@ -96,7 +96,7 @@ export const useHooks = ({ id }: { id: string }) => {
   return {
     tabs,
     value: tabType,
-    userInformation,
+    isLoading: !userInformation,
     control,
     onSubmit: handleSubmit(!userInformation?.id ? create : update),
     onGoToBack,

@@ -50,5 +50,6 @@ export const useHooks = ({ id, tabType }: Props) => {
     colums,
     rows,
     goToEdit,
+    isLoading: !userInformation,
   }
 }

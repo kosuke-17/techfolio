@@ -7,7 +7,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
-import CircularProgress from '@mui/material/CircularProgress'
 
 import CustomTextField from '@/components/presentations/CustomTextField'
 import IconButton from '@/components/presentations/atoms/IconButton'
@@ -15,6 +14,7 @@ import ContentCenter from '@/components/presentations/ContentCenter'
 import TabPanel from '@/components/presentations/atoms/TabPanel'
 import { useHooks } from './hooks'
 import RadioInput from '@/components/presentations/RadioInput'
+import LoadingCircular from '@/components/presentations/atoms/LoadingCircular'
 
 const StyledTabLabelBox = styled(Box)(() => ({
   fontSize: '16px',
@@ -27,14 +27,14 @@ const SpreadSheetEditForm = (props: Props) => {
   const {
     tabs,
     value,
-    userInformation,
+    isLoading,
     control,
     onSubmit,
     onGoToBack,
     handleChange,
   } = useHooks(props)
 
-  if (userInformation) return <CircularIndeterminate />
+  if (isLoading) return <LoadingCircular />
 
   return (
     <ContentCenter sx={{ py: 3 }}>
@@ -129,17 +129,3 @@ const SpreadSheetEditForm = (props: Props) => {
 }
 
 export default SpreadSheetEditForm
-
-function CircularIndeterminate() {
-  return (
-    <Box
-      sx={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <CircularProgress />
-    </Box>
-  )
-}

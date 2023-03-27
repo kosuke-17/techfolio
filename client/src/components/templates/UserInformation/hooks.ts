@@ -14,7 +14,7 @@ export const useHooks = ({ tabType }: Props) => {
   const { me } = useMe()
   const { userInformation } = useUserInformation({ id: me?.userInformation.id })
 
-  const rows = useMemo(() => {
+  const rows: RowType[] = useMemo(() => {
     if (!userInformation) return []
     const {
       stuffId,

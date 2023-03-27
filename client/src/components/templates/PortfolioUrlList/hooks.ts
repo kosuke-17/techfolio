@@ -2,9 +2,9 @@ import { useRouter } from 'next/router'
 
 import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 
-type Props = { tabType: TabType }
+type Props = { id?: string; tabType: TabType }
 
-export const useHooks = ({ tabType }: Props) => {
+export const useHooks = ({ id, tabType }: Props) => {
   const router = useRouter()
   const colums = [{ name: 'URL名' }, { name: 'Link' }]
   const rows = [
@@ -14,7 +14,7 @@ export const useHooks = ({ tabType }: Props) => {
   ]
   const goToEdit = () => {
     router.push({
-      pathname: '/spread-sheet/edit',
+      pathname: `/spread-sheet/${id}/edit`,
       query: { type: tabType },
     })
   }

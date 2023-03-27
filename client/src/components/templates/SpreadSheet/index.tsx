@@ -18,7 +18,7 @@ const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
 }))
 
 const SpreadSheet = () => {
-  const { download } = useHooks()
+  const { download, userInformationId } = useHooks()
   return (
     <ContentCenter sx={{ py: 3 }}>
       <Paper sx={{ py: 3, borderRadius: 10, px: 3 }} elevation={3}>
@@ -31,11 +31,11 @@ const SpreadSheet = () => {
           />
         </StyledSpreadSheetHeader>
 
-        <UserInformation tabType='info' />
+        <UserInformation id={userInformationId} tabType='info' />
 
-        <PortfolioUrlList tabType='portfolio' />
+        <PortfolioUrlList id={userInformationId} tabType='portfolio' />
 
-        <SkillInformation tabType='skill' />
+        <SkillInformation id={userInformationId} tabType='skill' />
       </Paper>
     </ContentCenter>
   )

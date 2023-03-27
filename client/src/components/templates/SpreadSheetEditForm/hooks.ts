@@ -8,7 +8,6 @@ import { requiredString, requiredNumber } from '@/zod/common'
 import { enhancedApi } from '@/store/api/codegen/user-information'
 import { GENDER } from '@/constant/user-information'
 import { useUserInformation } from '@/hooks/api/user-information'
-import { useMe } from '@/hooks/api/user'
 
 export type TabType = 'info' | 'portfolio' | 'skill'
 
@@ -24,8 +23,7 @@ const schema = z.object({
 })
 export type DefaultValues = z.infer<typeof schema>
 
-export const useHooks = (id?: string) => {
-  const { me } = useMe()
+export const useHooks = ({ id }: { id: string }) => {
   const router = useRouter()
   const tabType = router.query.type as TabType
   // TODO:labelはバックエンドから渡したい
@@ -34,7 +32,7 @@ export const useHooks = (id?: string) => {
     { label: 'ポートフォリオ', value: 'portfolio' },
     { label: 'スキル要約', value: 'skill' },
   ]
-  const { userInformation } = useUserInformation({ id: me?.userInformation.id })
+  const { userInformation } = useUserInformation({ id })
 
   const [createMutation] =
     enhancedApi.useUserInformationsControllerCreateMutation()
@@ -98,6 +96,7 @@ export const useHooks = (id?: string) => {
   return {
     tabs,
     value: tabType,
+    userInformation,
     control,
     onSubmit: handleSubmit(!userInformation?.id ? create : update),
     onGoToBack,

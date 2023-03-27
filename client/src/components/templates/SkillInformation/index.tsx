@@ -5,10 +5,10 @@ import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 
 import { useHooks } from './hooks'
 
-type Props = { tabType: TabType }
+type Props = { id?: string; tabType: TabType }
 
-const SkillInformation = ({ tabType }: Props) => {
-  const { colums, rows, goToEdit } = useHooks({ tabType })
+const SkillInformation = (props: Props) => {
+  const { colums, rows, goToEdit } = useHooks(props)
 
   return (
     <LayoutTable>

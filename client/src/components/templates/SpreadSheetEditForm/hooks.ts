@@ -15,7 +15,7 @@ export type TabType = 'info' | 'portfolio' | 'skill'
 const schema = z.object({
   stuffId: requiredString,
   age: requiredNumber,
-  gender: z.enum([GENDER.MALE, GENDER.FEMALE]),
+  gender: z.enum([GENDER.MALE.VALUE, GENDER.FEMALE.VALUE]),
   nearestStation: requiredString,
   startWorkDate: requiredString,
   seExpAmount: requiredNumber,
@@ -44,7 +44,7 @@ export const useHooks = (id?: string) => {
   const defaultValues = {
     stuffId: '',
     age: 0,
-    gender: GENDER.MALE,
+    gender: GENDER.MALE.VALUE,
     nearestStation: '',
     startWorkDate: '',
     seExpAmount: 0,

@@ -33,12 +33,12 @@ const RadioInput: FC<Props> = ({ name, control }) => {
         value={field.value === undefined ? '' : field.value}
       >
         <FormControlLabel
-          value={GENDER.MALE}
+          value={GENDER.MALE.VALUE}
           control={<Radio />}
           label='男性'
         />
         <FormControlLabel
-          value={GENDER.FEMALE}
+          value={GENDER.FEMALE.VALUE}
           control={<Radio />}
           label='女性'
         />

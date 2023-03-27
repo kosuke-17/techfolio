@@ -13,7 +13,6 @@ import ContentCenter from '@/components/presentations/ContentCenter'
 import TabPanel from '@/components/presentations/atoms/TabPanel'
 import { useHooks } from './hooks'
 import RadioInput from '@/components/presentations/RadioInput'
-import { GENDER } from '@/constant/user-information'
 import { Button } from '@mui/material'
 
 const StyledTabLabelBox = styled(Box)(() => ({

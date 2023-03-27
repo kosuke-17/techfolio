@@ -5,6 +5,7 @@ import { useMe } from '@/hooks/api/user'
 import { useUserInformation } from '@/hooks/api/user-information'
 import { GENDER } from '@/constant/user-information'
 import { useMemo } from 'react'
+import { getExpAmountLabel } from '@/lib/theme/user-information'
 
 type Props = { tabType: TabType }
 type RowType = { name: string; content: string }
@@ -30,11 +31,11 @@ export const useHooks = ({ tabType }: Props) => {
       { name: 'スタッフID', content: stuffId },
       { name: '年齢', content: age.toString() },
       { name: '性別', content: GENDER[gender].LABEL },
-      { name: '最寄駅', content: nearestStation },
+      { name: '最寄駅', content: nearestStation + '駅' },
       { name: '稼働開始日', content: startWorkDate },
-      { name: 'SE経験', content: seExpAmount.toString() },
-      { name: 'PG・作業員経験', content: pgExpAmount.toString() },
-      { name: 'IT全体経験', content: itExpAmount.toString() },
+      { name: 'SE経験', content: getExpAmountLabel(seExpAmount) },
+      { name: 'PG・作業員経験', content: getExpAmountLabel(pgExpAmount) },
+      { name: 'IT全体経験', content: getExpAmountLabel(itExpAmount) },
     ]
   }, [userInformation])
 

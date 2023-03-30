@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import LayoutMain from '@/components/presentations/LayoutMain'
 import { store } from '@/store'
 import theme from '@/lib/theme'
+import Snackbar from '@/components/presentations/Snackbar'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <LayoutMain>
           <Component {...pageProps} />
         </LayoutMain>
+        <Snackbar />
       </ThemeProvider>
     </Provider>
   )

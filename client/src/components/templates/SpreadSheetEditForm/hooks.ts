@@ -8,6 +8,7 @@ import { requiredString, requiredNumber } from '@/zod/common'
 import { enhancedApi } from '@/store/api/codegen/user-information'
 import { GENDER } from '@/constant/user-information'
 import { useUserInformation } from '@/hooks/api/user-information'
+import { useSnackbar } from '@/hooks/useSnackbar'
 
 export type TabType = 'info' | 'portfolio' | 'skill'
 
@@ -25,6 +26,7 @@ export type DefaultValues = z.infer<typeof schema>
 
 export const useHooks = ({ id }: { id: string }) => {
   const router = useRouter()
+  const { setSnackbarProps } = useSnackbar()
   const tabType = router.query.type as TabType
   // TODO:labelはバックエンドから渡したい
   const tabs = [
@@ -71,6 +73,7 @@ export const useHooks = ({ id }: { id: string }) => {
     try {
       await createMutation({ createUserInformationDto }).unwrap()
       router.push('/spread-sheet')
+      setSnackbarProps({ open: true, message: '作成しました' })
     } catch (e) {
       console.error(e)
     }
@@ -81,6 +84,8 @@ export const useHooks = ({ id }: { id: string }) => {
     try {
       await updateMutation({ id, updateUserInformationDto }).unwrap()
       router.push('/spread-sheet')
+
+      setSnackbarProps({ open: true, message: '更新しました' })
     } catch (e) {
       console.error(e)
     }

@@ -41,7 +41,7 @@ export const useHooks = ({ id, tabType }: Props) => {
 
   const goToEdit = () => {
     router.push({
-      pathname: `/spread-sheet/${id}/edit`,
+      pathname: `/spread-sheet/edit`,
       query: { type: tabType },
     })
   }

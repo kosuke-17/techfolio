@@ -10,6 +10,7 @@ import { GENDER } from '@/constant/user-information'
 import { useUserInformation } from '@/hooks/api/user-information'
 import { useSnackbar } from '@/hooks/useSnackbar'
 import { getErrorMessage } from '@/lib/error'
+import { useMe } from '@/hooks/api/user'
 
 export type TabType = 'info' | 'portfolio' | 'skill'
 
@@ -25,8 +26,10 @@ const schema = z.object({
 })
 export type DefaultValues = z.infer<typeof schema>
 
-export const useHooks = ({ id }: { id: string }) => {
+export const useHooks = () => {
   const router = useRouter()
+  const { me } = useMe()
+  const id = me?.userInformation.id
   const { setSnackbarProps } = useSnackbar()
   const tabType = router.query.type as TabType
   // TODO:labelはバックエンドから渡したい

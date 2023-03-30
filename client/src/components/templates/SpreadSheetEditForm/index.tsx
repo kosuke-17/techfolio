@@ -21,9 +21,7 @@ const StyledTabLabelBox = styled(Box)(() => ({
   fontWeight: 700,
 }))
 
-type Props = { id: string }
-
-const SpreadSheetEditForm = (props: Props) => {
+const SpreadSheetEditForm = () => {
   const {
     tabs,
     value,
@@ -32,7 +30,7 @@ const SpreadSheetEditForm = (props: Props) => {
     onSubmit,
     onGoToBack,
     handleChange,
-  } = useHooks(props)
+  } = useHooks()
 
   if (isLoading) return <LoadingCircular />
 

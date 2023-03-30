@@ -444,7 +444,6 @@
             "type": "string"
           },
           "startWorkDate": {
-            "format": "date-time",
             "type": "string"
           },
           "seExpAmount": {
@@ -495,7 +494,6 @@
             "type": "string"
           },
           "startWorkDate": {
-            "format": "date-time",
             "type": "string"
           },
           "seExpAmount": {
@@ -538,7 +536,6 @@
             "type": "string"
           },
           "startWorkDate": {
-            "format": "date-time",
             "type": "string"
           },
           "seExpAmount": {

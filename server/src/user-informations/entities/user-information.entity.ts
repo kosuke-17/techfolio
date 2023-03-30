@@ -19,9 +19,8 @@ export class UserInformationEntity extends PrismaEntity {
   @ApiProperty({ type: String })
   nearestStation: UserInformation['nearestStation']
 
-  @Type(() => Date)
-  @IsDate()
-  @ApiProperty({ type: Date })
+  @IsString()
+  @ApiProperty({ type: String })
   startWorkDate: UserInformation['startWorkDate']
 
   @ApiProperty({ type: Number })

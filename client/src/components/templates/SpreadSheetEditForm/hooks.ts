@@ -9,6 +9,7 @@ import { enhancedApi } from '@/store/api/codegen/user-information'
 import { GENDER } from '@/constant/user-information'
 import { useUserInformation } from '@/hooks/api/user-information'
 import { useSnackbar } from '@/hooks/useSnackbar'
+import { getErrorMessage } from '@/lib/error'
 
 export type TabType = 'info' | 'portfolio' | 'skill'
 
@@ -75,7 +76,11 @@ export const useHooks = ({ id }: { id: string }) => {
       router.push('/spread-sheet')
       setSnackbarProps({ open: true, message: '作成しました' })
     } catch (e) {
-      console.error(e)
+      setSnackbarProps({
+        open: true,
+        severity: 'error',
+        message: getErrorMessage(e),
+      })
     }
   }
 
@@ -87,7 +92,11 @@ export const useHooks = ({ id }: { id: string }) => {
 
       setSnackbarProps({ open: true, message: '更新しました' })
     } catch (e) {
-      console.error(e)
+      setSnackbarProps({
+        open: true,
+        severity: 'error',
+        message: getErrorMessage(e),
+      })
     }
   }
 

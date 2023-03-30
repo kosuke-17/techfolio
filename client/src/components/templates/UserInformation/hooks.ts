@@ -4,7 +4,7 @@ import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 import { useUserInformation } from '@/hooks/api/user-information'
 import { GENDER } from '@/constant/user-information'
 import { useMemo } from 'react'
-import { getExpAmountLabel } from '@/lib/theme/user-information'
+import { getExpAmountLabel } from '@/lib/user-information'
 
 type Props = { id?: string; tabType: TabType }
 type RowType = { name: string; content: string }

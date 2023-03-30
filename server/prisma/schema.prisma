@@ -48,7 +48,7 @@ model UserInformation {
   age     Int
   gender GENDER
   nearestStation String
-  startWorkDate DateTime
+  startWorkDate String
   seExpAmount Int
   pgExpAmount Int
   itExpAmount Int

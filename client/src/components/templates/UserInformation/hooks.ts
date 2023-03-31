@@ -29,7 +29,7 @@ export const useHooks = ({ id, tabType }: Props) => {
       { name: 'スタッフID', content: stuffId },
       { name: '年齢', content: age.toString() },
       { name: '性別', content: GENDER[gender].LABEL },
-      { name: '最寄駅', content: nearestStation + '駅' },
+      { name: '最寄駅', content: nearestStation },
       { name: '稼働開始日', content: startWorkDate },
       { name: 'SE経験', content: getExpAmountLabel(seExpAmount) },
       { name: 'PG・作業員経験', content: getExpAmountLabel(pgExpAmount) },

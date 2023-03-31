@@ -1,12 +1,11 @@
 import { FC } from 'react'
-import { useController, Control } from 'react-hook-form'
+import { useController, Control, RegisterOptions } from 'react-hook-form'
 import InputLabel from '@mui/material/InputLabel'
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
 import { styled, SxProps } from '@mui/material/styles'
 import FormHelperText from '@mui/material/FormHelperText'
 import ErrorIcon from '@mui/icons-material/Error'
-import type { OutlinedInputProps } from '@mui/material/OutlinedInput'
 
 import OutlinedInput from '@/components/presentations//OutlinedInput'
 
@@ -20,9 +19,9 @@ type Props = {
   readOnly?: boolean
   multiline?: boolean
   minRows?: number
-  inputProps?: OutlinedInputProps
   sx?: SxProps
   suffixLabel?: string
+  format?: (v: string) => void
 }
 
 const StyledInputLabel = styled(InputLabel)(() => ({
@@ -45,6 +44,7 @@ const CustomTextField: FC<Props> = ({
   label,
   readOnly = false,
   suffixLabel,
+  format,
   ...rest
 }) => {
   const {
@@ -71,6 +71,12 @@ const CustomTextField: FC<Props> = ({
           readOnly={readOnly}
           {...rest}
           {...field}
+          onChange={(e) => {
+            const v = e.target.value
+            if (format) {
+              field.onChange(format(v))
+            }
+          }}
         />
         {suffixLabel}
       </StyledOutlinedInputBox>

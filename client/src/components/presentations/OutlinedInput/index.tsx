@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
-import { OutlinedInput as MuiOutlinedInput } from '@mui/material'
+import MuiOutlinedInput, {
+  OutlinedInputProps,
+} from '@mui/material/OutlinedInput'
 import { styled } from '@mui/material/styles'
 
-type Props = {
+type Props = OutlinedInputProps & {
   id: string
   error: boolean
   readOnly: boolean
@@ -24,7 +26,7 @@ const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme, error }) => ({
   },
 }))
 
-const OutlinedInput: FC<Props> = React.forwardRef<HTMLInputElement, Props>(
+const OutlinedInput = React.forwardRef<HTMLInputElement, Props>(
   function OutlinedInput({ id, error, readOnly, ...rest }, ref) {
     return (
       <StyledMuiOutlinedInput

@@ -56,10 +56,15 @@ export const useHooks = () => {
     itExpAmount: 0,
   }
 
-  const { control, handleSubmit, setValue } = useForm<DefaultValues>({
+  const { control, watch, handleSubmit, setValue } = useForm<DefaultValues>({
     resolver: zodResolver(schema),
     defaultValues,
   })
+
+  const age = watch('age')
+  console.log('age')
+  console.log(typeof age)
+  console.log(age)
 
   useEffect(() => {
     if (!userInformation) return

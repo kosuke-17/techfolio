@@ -15,6 +15,7 @@ import TabPanel from '@/components/presentations/atoms/TabPanel'
 import { useHooks } from './hooks'
 import RadioInput from '@/components/presentations/RadioInput'
 import LoadingCircular from '@/components/presentations/atoms/LoadingCircular'
+import { formatNumToString } from '@/lib/util'
 
 const StyledTabLabelBox = styled(Box)(() => ({
   fontSize: '16px',
@@ -67,19 +68,20 @@ const SpreadSheetEditForm = () => {
 
                 <RadioInput control={control} name='gender' />
               </Stack>
+              <CustomTextField
+                name='nearestStation'
+                label='最寄駅'
+                control={control}
+              />
+
               <Stack direction='row' spacing={2}>
                 <CustomTextField
                   name='age'
                   label='年齢'
                   control={control}
-                  inputProps={{ type: 'number' }}
-                  sx={{ width: '70%' }}
+                  sx={{ width: '50%' }}
                   suffixLabel='歳'
-                />
-                <CustomTextField
-                  name='nearestStation'
-                  label='最寄駅'
-                  control={control}
+                  format={formatNumToString}
                 />
                 <CustomTextField
                   name='startWorkDate'
@@ -92,7 +94,7 @@ const SpreadSheetEditForm = () => {
                   name='seExpAmount'
                   label='SE経験'
                   control={control}
-                  inputProps={{ type: 'number' }}
+                  format={formatNumToString}
                   sx={{ width: '70%' }}
                   suffixLabel='ヶ月'
                 />
@@ -100,7 +102,7 @@ const SpreadSheetEditForm = () => {
                   name='pgExpAmount'
                   label='PG・作業員経験'
                   control={control}
-                  inputProps={{ type: 'number' }}
+                  format={formatNumToString}
                   sx={{ width: '70%' }}
                   suffixLabel='ヶ月'
                 />
@@ -108,7 +110,7 @@ const SpreadSheetEditForm = () => {
                   name='itExpAmount'
                   label='IT全体経験'
                   control={control}
-                  inputProps={{ type: 'number' }}
+                  format={formatNumToString}
                   sx={{ width: '70%' }}
                   suffixLabel='ヶ月'
                 />

@@ -9,6 +9,7 @@ import RadioInput from '@/components/presentations/RadioInput'
 import { formatNumToString } from '@/lib/util'
 
 import { useHooks } from './hooks'
+import { GENDER } from '@/constant/user-information'
 
 const UserInformationField = () => {
   const { isLoading, control, onSubmit } = useHooks()
@@ -25,7 +26,15 @@ const UserInformationField = () => {
             control={control}
           />
 
-          <RadioInput control={control} name='gender' />
+          <RadioInput
+            label='性別'
+            control={control}
+            name='gender'
+            options={[
+              { label: '男性', value: GENDER.MALE.VALUE },
+              { label: '女性', value: GENDER.FEMALE.VALUE },
+            ]}
+          />
         </Stack>
         <CustomTextField
           name='nearestStation'

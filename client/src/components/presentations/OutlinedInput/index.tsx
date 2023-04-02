@@ -14,12 +14,8 @@ const StyledMuiOutlinedInput = styled(MuiOutlinedInput)(({ theme, error }) => ({
   borderRadius: theme.shape.borderRadius,
   '& .MuiOutlinedInput-notchedOutline': error
     ? null
-    : {
-        border: `1px solid #e0e0e0`,
-      },
-  '& .MuiOutlinedInput-input': {
-    padding: theme.spacing(1),
-  },
+    : { border: `1px solid #e0e0e0` },
+  '& .MuiOutlinedInput-input': { padding: theme.spacing(1) },
   '& .MuiOutlinedInput-input:focus': {
     border: `1px solid #e0e0e0`,
     borderRadius: theme.shape.borderRadius,

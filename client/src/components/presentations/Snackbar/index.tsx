@@ -13,8 +13,6 @@ const Snackbar = () => {
     ...rest
   } = snackbarProps as SnackbarProps
 
-  console.log(message)
-
   const onClose = () => {
     setSnackbarProps({ message, severity, open: false })
   }

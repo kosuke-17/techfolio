@@ -4,24 +4,27 @@ import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormLabel from '@mui/material/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup'
-import { GENDER } from '@/constant/user-information'
 import { Control, useController } from 'react-hook-form'
+
+type OptionType = {
+  label: string
+  value: string
+}
 
 type Props = {
   name: string
+  label: string
   control: Control<any>
+  options: OptionType[]
 }
-const RadioInput: FC<Props> = ({ name, control }) => {
-  const {
-    field,
-    fieldState: { error },
-  } = useController({
+const RadioInput: FC<Props> = ({ name, label, control, options }) => {
+  const { field } = useController({
     name,
     control,
   })
   return (
     <FormControl>
-      <FormLabel sx={{ color: 'common.black' }}>性別</FormLabel>
+      <FormLabel sx={{ color: 'common.black' }}>{label}</FormLabel>
       <RadioGroup
         row
         onChange={(e) => {
@@ -32,16 +35,14 @@ const RadioInput: FC<Props> = ({ name, control }) => {
         }}
         value={field.value === undefined ? '' : field.value}
       >
-        <FormControlLabel
-          value={GENDER.MALE.VALUE}
-          control={<Radio />}
-          label='男性'
-        />
-        <FormControlLabel
-          value={GENDER.FEMALE.VALUE}
-          control={<Radio />}
-          label='女性'
-        />
+        {options.map((o) => (
+          <FormControlLabel
+            key={o.label}
+            value={o.value}
+            control={<Radio />}
+            label={o.label}
+          />
+        ))}
       </RadioGroup>
     </FormControl>
   )

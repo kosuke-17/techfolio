@@ -6,16 +6,13 @@ import Tab from '@mui/material/Tab'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import Button from '@mui/material/Button'
 
-import CustomTextField from '@/components/presentations/CustomTextField'
 import IconButton from '@/components/presentations/atoms/IconButton'
 import ContentCenter from '@/components/presentations/ContentCenter'
 import TabPanel from '@/components/presentations/atoms/TabPanel'
+import UserInformationField from '@/components/templates/SpreadSheetEditForm/UserInfomationField'
+
 import { useHooks } from './hooks'
-import RadioInput from '@/components/presentations/RadioInput'
-import LoadingCircular from '@/components/presentations/atoms/LoadingCircular'
-import { formatNumToString } from '@/lib/util'
 
 const StyledTabLabelBox = styled(Box)(() => ({
   fontSize: '16px',
@@ -23,17 +20,7 @@ const StyledTabLabelBox = styled(Box)(() => ({
 }))
 
 const SpreadSheetEditForm = () => {
-  const {
-    tabs,
-    value,
-    isLoading,
-    control,
-    onSubmit,
-    onGoToBack,
-    handleChange,
-  } = useHooks()
-
-  if (isLoading) return <LoadingCircular />
+  const { tabs, value, onGoToBack, handleChange } = useHooks()
 
   return (
     <ContentCenter sx={{ py: 3 }}>
@@ -57,71 +44,7 @@ const SpreadSheetEditForm = () => {
           ))}
         </Tabs>
         <TabPanel value={value} tabType='info'>
-          <form onSubmit={onSubmit}>
-            <Stack direction='column' spacing={2}>
-              <Stack direction='row' spacing={2}>
-                <CustomTextField
-                  name='stuffId'
-                  label='スタッフID'
-                  control={control}
-                />
-
-                <RadioInput control={control} name='gender' />
-              </Stack>
-              <CustomTextField
-                name='nearestStation'
-                label='最寄駅'
-                control={control}
-              />
-
-              <Stack direction='row' spacing={2}>
-                <CustomTextField
-                  name='age'
-                  label='年齢'
-                  control={control}
-                  sx={{ width: '50%' }}
-                  suffixLabel='歳'
-                  format={formatNumToString}
-                />
-                <CustomTextField
-                  name='startWorkDate'
-                  label='稼働開始日'
-                  control={control}
-                />
-              </Stack>
-              <Stack direction='row' spacing={2}>
-                <CustomTextField
-                  name='seExpAmount'
-                  label='SE経験'
-                  control={control}
-                  format={formatNumToString}
-                  sx={{ width: '70%' }}
-                  suffixLabel='ヶ月'
-                />
-                <CustomTextField
-                  name='pgExpAmount'
-                  label='PG・作業員経験'
-                  control={control}
-                  format={formatNumToString}
-                  sx={{ width: '70%' }}
-                  suffixLabel='ヶ月'
-                />
-                <CustomTextField
-                  name='itExpAmount'
-                  label='IT全体経験'
-                  control={control}
-                  format={formatNumToString}
-                  sx={{ width: '70%' }}
-                  suffixLabel='ヶ月'
-                />
-              </Stack>
-            </Stack>
-            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-              <Button variant='contained' sx={{ width: '30%' }} type='submit'>
-                保存
-              </Button>
-            </Box>
-          </form>
+          <UserInformationField />
         </TabPanel>
       </Paper>
     </ContentCenter>

@@ -75,6 +75,8 @@ const CustomTextField: FC<Props> = ({
             const v = e.target.value
             if (format) {
               field.onChange(format(v))
+            } else {
+              field.onChange(v)
             }
           }}
         />

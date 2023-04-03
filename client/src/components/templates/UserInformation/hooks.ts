@@ -6,10 +6,10 @@ import { GENDER } from '@/constant/user-information'
 import { useMemo } from 'react'
 import { getExpAmountLabel } from '@/lib/user-information'
 
-type Props = { id?: string; tabType: TabType }
+type Props = { id?: string }
 type RowType = { name: string; content: string }
 
-export const useHooks = ({ id, tabType }: Props) => {
+export const useHooks = ({ id }: Props) => {
   const router = useRouter()
   const { userInformation } = useUserInformation({ id })
 
@@ -39,7 +39,14 @@ export const useHooks = ({ id, tabType }: Props) => {
 
   const colums = [{ name: '項目名' }, { name: '内容' }]
 
-  const goToEdit = () => {
+  const goToInfoNewForm = (tabType: TabType) => {
+    router.push({
+      pathname: `/spread-sheet/new`,
+      query: { type: tabType },
+    })
+  }
+
+  const goToInfoEditForm = (tabType: TabType) => {
     router.push({
       pathname: `/spread-sheet/edit`,
       query: { type: tabType },
@@ -49,7 +56,8 @@ export const useHooks = ({ id, tabType }: Props) => {
   return {
     colums,
     rows,
-    goToEdit,
-    isLoading: !userInformation,
+    goToInfoEditForm,
+    goToInfoNewForm,
+    isLoading: id && !userInformation,
   }
 }

@@ -8,6 +8,6 @@ export const useHooks = () => {
 
   return {
     download,
-    userInformationId: me?.userInformation.id,
+    userInformationId: me?.userInformation?.id,
   }
 }

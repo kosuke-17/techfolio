@@ -27,7 +27,7 @@ export type DefaultValues = z.infer<typeof schema>
 export const useHooks = () => {
   const router = useRouter()
   const { me } = useMe()
-  const id = me?.userInformation.id
+  const id = me?.userInformation?.id
   const { setSnackbarProps } = useSnackbar()
   const { userInformation } = useUserInformation({ id })
 
@@ -95,6 +95,7 @@ export const useHooks = () => {
   }
 
   return {
+    isNew: !id,
     isLoading: !userInformation,
     control,
     onSubmit: handleSubmit(!userInformation?.id ? create : update),

@@ -12,9 +12,9 @@ import { useHooks } from './hooks'
 import { GENDER } from '@/constant/user-information'
 
 const UserInformationField = () => {
-  const { isLoading, control, onSubmit } = useHooks()
+  const { isNew, isLoading, control, onSubmit } = useHooks()
 
-  if (isLoading) return <LoadingCircular />
+  if (!isNew && isLoading) return <LoadingCircular />
 
   return (
     <form onSubmit={onSubmit}>

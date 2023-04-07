@@ -1,5 +1,6 @@
 import { createTheme, Theme } from '@mui/material/styles'
-import { palette } from './palette'
+
+import { palette } from '@/lib/theme/palette'
 
 const theme: Theme = createTheme({
   palette,

@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
-import SpreadSheet from '@/components/templates/SpreadSheet'
 import ProfileCard from '@/components/templates/ProfileCard'
+import SpreadSheet from '@/components/templates/SpreadSheet'
 
 const SpreadSheetPage = () => {
   return (

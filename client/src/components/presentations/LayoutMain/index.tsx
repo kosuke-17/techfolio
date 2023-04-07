@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react'
 import { styled } from '@mui/material/styles'
+import { FC, ReactNode } from 'react'
 
 type Props = {
   children: ReactNode

@@ -1,7 +1,8 @@
-import { FC } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
+import { FC } from 'react'
+
 import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 
 type Props = {

@@ -1,16 +1,16 @@
-import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-import { requiredString, requiredNumber } from '@/zod/common'
-import { enhancedApi } from '@/store/api/codegen/user-information'
 import { GENDER } from '@/constant/user-information'
+import { useMe } from '@/hooks/api/user'
 import { useUserInformation } from '@/hooks/api/user-information'
 import { useSnackbar } from '@/hooks/useSnackbar'
 import { getErrorMessage } from '@/lib/error'
-import { useMe } from '@/hooks/api/user'
+import { enhancedApi } from '@/store/api/codegen/user-information'
+import { requiredString, requiredNumber } from '@/zod/common'
 
 const schema = z.object({
   stuffId: requiredString,

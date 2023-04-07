@@ -1,4 +1,5 @@
-import { baseApi as api } from "../../baseApi";
+import { baseApi as api } from '../../baseApi'
+
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
     usersControllerFindAll: build.query<
@@ -13,7 +14,7 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: (queryArg) => ({
         url: `/api/users`,
-        method: "POST",
+        method: 'POST',
         body: queryArg.createUserDto,
       }),
     }),
@@ -35,68 +36,68 @@ const injectedRtkApi = api.injectEndpoints({
     >({
       query: (queryArg) => ({
         url: `/api/users/logout`,
-        method: "PUT",
+        method: 'PUT',
         body: queryArg.updateUserSecretDto,
       }),
     }),
   }),
   overrideExisting: false,
-});
-export { injectedRtkApi as enhancedApi };
+})
+export { injectedRtkApi as enhancedApi }
 export type UsersControllerFindAllApiResponse =
-  /** status 200  */ UserResponseDto[];
-export type UsersControllerFindAllApiArg = void;
+  /** status 200  */ UserResponseDto[]
+export type UsersControllerFindAllApiArg = void
 export type UsersControllerCreateApiResponse =
-  /** status 201  */ UserCreateResponseDto;
+  /** status 201  */ UserCreateResponseDto
 export type UsersControllerCreateApiArg = {
-  createUserDto: CreateUserDto;
-};
-export type UsersControllerFindMeApiResponse = /** status 200  */ ResponseMeDto;
-export type UsersControllerFindMeApiArg = void;
+  createUserDto: CreateUserDto
+}
+export type UsersControllerFindMeApiResponse = /** status 200  */ ResponseMeDto
+export type UsersControllerFindMeApiArg = void
 export type UsersControllerFindOneApiResponse =
-  /** status 200  */ UserResponseDto;
+  /** status 200  */ UserResponseDto
 export type UsersControllerFindOneApiArg = {
-  id: string;
-};
-export type UsersControllerLogoutApiResponse = unknown;
+  id: string
+}
+export type UsersControllerLogoutApiResponse = unknown
 export type UsersControllerLogoutApiArg = {
-  updateUserSecretDto: UpdateUserSecretDto;
-};
+  updateUserSecretDto: UpdateUserSecretDto
+}
 export type UserResponseDto = {
-  firstName: string;
-  lastName: string;
-};
+  firstName: string
+  lastName: string
+}
 export type UserSecretForUserCreateResponseDto = {
-  token: string;
-};
+  token: string
+}
 export type UserCreateResponseDto = {
-  id: string;
-  secret: UserSecretForUserCreateResponseDto;
-};
+  id: string
+  secret: UserSecretForUserCreateResponseDto
+}
 export type CreateUserDto = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-};
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
 export type UserInformationForResponseMe = {
-  id: string;
-};
+  id: string
+}
 export type ResponseMeDto = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  firstName: string;
-  lastName: string;
-  userInformation: UserInformationForResponseMe;
-};
+  id: string
+  createdAt: string
+  updatedAt: string
+  firstName: string
+  lastName: string
+  userInformation: UserInformationForResponseMe
+}
 export type UpdateUserSecretDto = {
-  token: string;
-};
+  token: string
+}
 export const {
   useUsersControllerFindAllQuery,
   useUsersControllerCreateMutation,
   useUsersControllerFindMeQuery,
   useUsersControllerFindOneQuery,
   useUsersControllerLogoutMutation,
-} = injectedRtkApi;
+} = injectedRtkApi

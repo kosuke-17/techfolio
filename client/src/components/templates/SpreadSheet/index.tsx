@@ -1,14 +1,15 @@
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
-import React from 'react'
 import Typography from '@mui/material/Typography'
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import { styled } from '@mui/material/styles'
+import React from 'react'
 
 import ContentCenter from '@/components/presentations/ContentCenter'
-import UserInformation from '@/components/templates/UserInformation'
 import IconButton from '@/components/presentations/atoms/IconButton'
 import PortfolioUrlList from '@/components/templates/PortfolioUrlList'
+import UserInformation from '@/components/templates/UserInformation'
+
 import SkillInformation from '../SkillInformation'
 import { useHooks } from './hooks'
 

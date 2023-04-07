@@ -1,12 +1,12 @@
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
 
 import LayoutMain from '@/components/presentations/LayoutMain'
-import { store } from '@/store'
-import theme from '@/lib/theme'
 import Snackbar from '@/components/presentations/Snackbar'
+import theme from '@/lib/theme'
+import { store } from '@/store'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

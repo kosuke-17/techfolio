@@ -1,7 +1,7 @@
-import { FC, ReactNode } from 'react'
-import NextLink from 'next/link'
-import MuiLink from '@mui/material/Link'
 import { SxProps, Theme } from '@mui/material'
+import MuiLink from '@mui/material/Link'
+import NextLink from 'next/link'
+import { FC, ReactNode } from 'react'
 
 type Props = {
   href: string

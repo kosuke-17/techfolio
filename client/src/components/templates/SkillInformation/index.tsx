@@ -1,6 +1,6 @@
-import TableHeader from '@/components/presentations/TableHeader'
 import LayoutTable from '@/components/presentations/LayoutTable'
 import SkillTableContainer from '@/components/presentations/SkillTableContainer'
+import TableHeader from '@/components/presentations/TableHeader'
 import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 
 import { useHooks } from './hooks'

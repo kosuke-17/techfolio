@@ -1,8 +1,9 @@
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+
 import { useMe } from '@/hooks/api/user'
 import { useToggle } from '@/hooks/useToggle'
 import { enhancedApi } from '@/store/api/codegen/user'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 export const useHooks = () => {
   const [open, setOpen] = useState(false)

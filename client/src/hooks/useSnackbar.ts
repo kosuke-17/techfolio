@@ -1,9 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import {
   selectSnackbarProps,
   setSnackbarProps as dispatchSnackbarProps,
   SnackbarProps,
 } from '@/store/slice/snackbarSlice'
-import { useDispatch, useSelector } from 'react-redux'
 
 export const useSnackbar = () => {
   const dispatch = useDispatch()

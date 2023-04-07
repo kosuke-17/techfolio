@@ -2,7 +2,7 @@ import type { AlertColor } from '@mui/material/Alert'
 import type { SnackbarProps as MuiSnackbarProps } from '@mui/material/Snackbar'
 import { createSlice } from '@reduxjs/toolkit'
 
-import { RootState } from '..'
+import { RootState } from '@/store'
 
 export type SnackbarProps = Pick<
   MuiSnackbarProps,

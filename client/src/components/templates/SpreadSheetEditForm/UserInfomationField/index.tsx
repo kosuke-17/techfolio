@@ -3,13 +3,13 @@ import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import React from 'react'
 
-import LoadingCircular from '@/components/presentations/atoms/LoadingCircular'
 import CustomTextField from '@/components/presentations/CustomTextField'
 import RadioInput from '@/components/presentations/RadioInput'
+import LoadingCircular from '@/components/presentations/atoms/LoadingCircular'
+import { GENDER } from '@/constant/user-information'
 import { formatNumToString } from '@/lib/util'
 
 import { useHooks } from './hooks'
-import { GENDER } from '@/constant/user-information'
 
 const UserInformationField = () => {
   const { isNew, isLoading, control, onSubmit } = useHooks()

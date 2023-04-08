@@ -39,14 +39,14 @@ export const useHooks = ({ id }: Props) => {
 
   const colums = [{ name: '項目名' }, { name: '内容' }]
 
-  const goToInfoNewForm = (tabType: TabType) => {
+  const goToNew = (tabType: TabType) => {
     router.push({
       pathname: `/spread-sheet/new`,
       query: { type: tabType },
     })
   }
 
-  const goToInfoEditForm = (tabType: TabType) => {
+  const goToEdit = (tabType: TabType) => {
     router.push({
       pathname: `/spread-sheet/edit`,
       query: { type: tabType },
@@ -56,8 +56,8 @@ export const useHooks = ({ id }: Props) => {
   return {
     colums,
     rows,
-    goToInfoEditForm,
-    goToInfoNewForm,
+    goToEdit,
+    goToNew,
     isLoading: id && !userInformation,
   }
 }

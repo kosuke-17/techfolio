@@ -1,18 +1,29 @@
+import CreateContainerPaper from '@/components/presentations/CreateContainerPaper'
 import LayoutTable from '@/components/presentations/LayoutTable'
 import TableContainer from '@/components/presentations/TableContainer'
 import TableHeader from '@/components/presentations/TableHeader'
-import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 
 import { useHooks } from './hooks'
 
-type Props = { id?: string; tabType: TabType }
+type Props = {
+  id?: string
+}
 
-const PortfolioUrlList = (props: Props) => {
-  const { colums, rows, goToEdit } = useHooks(props)
+const PortfolioUrlList = ({ id }: Props) => {
+  const tabType = 'portfolio'
+  const { colums, rows, goToNew, goToEdit } = useHooks({ id })
+  const isNew = !id
   return (
     <LayoutTable>
-      <TableHeader title='ポートフォリオ' onClick={goToEdit} />
-      <TableContainer colums={colums} rows={rows} />
+      <TableHeader title='ポートフォリオ' onClick={() => goToEdit(tabType)} />
+      {isNew ? (
+        <CreateContainerPaper
+          label='ポートフォリオを作成'
+          onMove={() => goToNew(tabType)}
+        />
+      ) : (
+        <TableContainer colums={colums} rows={rows} />
+      )}
     </LayoutTable>
   )
 }

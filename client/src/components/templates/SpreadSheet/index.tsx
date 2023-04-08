@@ -32,11 +32,11 @@ const SpreadSheet = () => {
           />
         </StyledSpreadSheetHeader>
 
-        <UserInformation id={userInformationId} tabType='info' />
+        <UserInformation id={userInformationId} />
 
-        <PortfolioUrlList id={userInformationId} tabType='portfolio' />
+        <PortfolioUrlList id={''} />
 
-        <SkillInformation id={userInformationId} tabType='skill' />
+        <SkillInformation id={''} />
       </Paper>
     </ContentCenter>
   )

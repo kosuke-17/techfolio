@@ -11,7 +11,7 @@ type Props = {
 
 const PortfolioUrlList = ({ id }: Props) => {
   const tabType = 'portfolio'
-  const { colums, rows, goToNew, goToEdit } = useHooks({ id })
+  const { colums, rows, goToNew, goToEdit } = useHooks()
   const isNew = !id
   return (
     <LayoutTable>

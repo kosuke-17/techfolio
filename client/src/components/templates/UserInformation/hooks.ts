@@ -1,16 +1,15 @@
-import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 
-import type { TabType } from '@/components/templates/SpreadSheetEditForm/hooks'
 import { GENDER } from '@/constant/user-information'
 import { useUserInformation } from '@/hooks/api/user-information'
+import { useSpreadSheet } from '@/hooks/spreadSheet'
 import { getExpAmountLabel } from '@/lib/user-information'
 
 type Props = { id?: string }
 type RowType = { name: string; content: string }
 
 export const useHooks = ({ id }: Props) => {
-  const router = useRouter()
+  const { goToNew, goToEdit } = useSpreadSheet()
   const { userInformation } = useUserInformation({ id })
 
   const rows: RowType[] = useMemo(() => {
@@ -38,20 +37,6 @@ export const useHooks = ({ id }: Props) => {
   }, [userInformation])
 
   const colums = [{ name: '項目名' }, { name: '内容' }]
-
-  const goToNew = (tabType: TabType) => {
-    router.push({
-      pathname: `/spread-sheet/new`,
-      query: { type: tabType },
-    })
-  }
-
-  const goToEdit = (tabType: TabType) => {
-    router.push({
-      pathname: `/spread-sheet/edit`,
-      query: { type: tabType },
-    })
-  }
 
   return {
     colums,

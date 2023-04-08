@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { SyntheticEvent } from 'react'
 
-export type TabType = 'info' | 'portfolio' | 'skill'
+import type { TabType } from '@/hooks/spreadSheet'
 
 export const useHooks = () => {
   const router = useRouter()

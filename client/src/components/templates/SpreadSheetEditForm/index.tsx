@@ -20,7 +20,7 @@ const StyledTabLabelBox = styled(Box)(() => ({
 }))
 
 const SpreadSheetEditForm = () => {
-  const { tabs, value, onGoToBack, handleChange } = useHooks()
+  const { tabs, value, goToBack, onChangeTabType } = useHooks()
 
   return (
     <ContentCenter sx={{ py: 3 }}>
@@ -28,12 +28,12 @@ const SpreadSheetEditForm = () => {
         <Stack direction='row' spacing={2}>
           <IconButton
             icon={ArrowBackIcon}
-            onClick={onGoToBack}
+            onClick={goToBack}
             iconSx={{ color: 'common.black', fontSize: '16px' }}
           />
           <Typography variant='h5'>SpreadSheetの編集</Typography>
         </Stack>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs value={value} onChange={onChangeTabType}>
           {tabs.map(({ label, value }) => (
             <Tab
               key={label}

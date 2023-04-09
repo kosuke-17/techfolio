@@ -2,26 +2,30 @@ import { baseApi as api } from '../../baseApi'
 
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
-    portfoliosControllerCreate: build.mutation<
-      PortfoliosControllerCreateApiResponse,
-      PortfoliosControllerCreateApiArg
+    portfoliosControllerUpsert: build.mutation<
+      PortfoliosControllerUpsertApiResponse,
+      PortfoliosControllerUpsertApiArg
     >({
       query: (queryArg) => ({
         url: `/api/portfolios`,
         method: 'POST',
-        body: queryArg.createPortfolioDto,
+        body: queryArg.upsertPortfolioDto,
       }),
     }),
   }),
   overrideExisting: false,
 })
 export { injectedRtkApi as enhancedApi }
-export type PortfoliosControllerCreateApiResponse = unknown
-export type PortfoliosControllerCreateApiArg = {
-  createPortfolioDto: CreatePortfolioDto
+export type PortfoliosControllerUpsertApiResponse = unknown
+export type PortfoliosControllerUpsertApiArg = {
+  upsertPortfolioDto: UpsertPortfolioDto
 }
-export type CreatePortfolioDto = {
+export type PortfolioForUpsert = {
+  id: string
   name?: string | null
   url?: string | null
 }
-export const { usePortfoliosControllerCreateMutation } = injectedRtkApi
+export type UpsertPortfolioDto = {
+  portfolios: PortfolioForUpsert[]
+}
+export const { usePortfoliosControllerUpsertMutation } = injectedRtkApi

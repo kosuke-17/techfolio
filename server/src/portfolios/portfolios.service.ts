@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { LoggerService } from 'src/logger/logger.service'
-import { CreatePortfolioDto } from 'src/portfolios/dto/create-portfolio.dto'
+import { UpsertPortfolioDto } from 'src/portfolios/dto/upsert-portfolio.dto'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { ResponseMeDto } from 'src/users/dtos/response-login-user.dto'
 
@@ -11,19 +11,27 @@ export class PortfoliosService {
     private readonly logger: LoggerService,
   ) {}
 
-  async create({
+  async upsert({
     user,
-    createPortfolioDto,
+    upsertPortfolioDto,
   }: {
     user: Pick<ResponseMeDto, 'id'>
-    createPortfolioDto: CreatePortfolioDto
+    upsertPortfolioDto: UpsertPortfolioDto
   }) {
+    const { portfolios } = upsertPortfolioDto
     try {
-      await this.prisma.portfolio.create({
-        data: {
-          ...createPortfolioDto,
-          user: { connect: { id: user.id } },
-        },
+      await this.prisma.$transaction(async (tscPrisma) => {
+        for (const p of portfolios) {
+          await tscPrisma.portfolio.upsert({
+            where: { id: p.id },
+            update: { ...p },
+            create: {
+              name: p.name ?? undefined,
+              url: p.url ?? undefined,
+              user: { connect: { id: user.id } },
+            },
+          })
+        }
       })
     } catch (e) {
       this.logger.error(e)

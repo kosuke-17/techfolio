@@ -220,14 +220,14 @@
     },
     "/api/portfolios": {
       "post": {
-        "operationId": "PortfoliosController_create",
+        "operationId": "PortfoliosController_upsert",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePortfolioDto"
+                "$ref": "#/components/schemas/UpsertPortfolioDto"
               }
             }
           }
@@ -580,9 +580,12 @@
           "itExpAmount"
         ]
       },
-      "CreatePortfolioDto": {
+      "PortfolioForUpsert": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -591,7 +594,24 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "UpsertPortfolioDto": {
+        "type": "object",
+        "properties": {
+          "portfolios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PortfolioForUpsert"
+            }
+          }
+        },
+        "required": [
+          "portfolios"
+        ]
       }
     }
   }

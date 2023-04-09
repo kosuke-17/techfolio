@@ -1,4 +1,4 @@
-import { CreatePortfolioDto } from './dto/create-portfolio.dto'
+import { UpsertPortfolioDto } from './dto/upsert-portfolio.dto'
 import { PortfoliosService } from './portfolios.service'
 import { Body, Controller, Post, UseGuards } from '@nestjs/common'
 import { BearerAuthGuard } from 'src/auth/bearer-auth.guard'
@@ -11,10 +11,10 @@ export class PortfoliosController {
   constructor(readonly portfoliosService: PortfoliosService) {}
 
   @Post()
-  async create(
+  async upsert(
     @LoginUser() user: ResponseMeDto,
-    @Body() createPortfolioDto: CreatePortfolioDto,
+    @Body() upsertPortfolioDto: UpsertPortfolioDto,
   ) {
-    await this.portfoliosService.create({ user, createPortfolioDto })
+    await this.portfoliosService.upsert({ user, upsertPortfolioDto })
   }
 }

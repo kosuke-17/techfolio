@@ -2,5 +2,5 @@
   "singleQuote": true,
   "trailingComma": "all",
   "semi": false,
-  "importOrderParserPlugins": ["typescript"]
+  "importOrderParserPlugins": ["typescript", "decorators-legacy"]
 }

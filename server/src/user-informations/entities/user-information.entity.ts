@@ -1,7 +1,6 @@
-import { UserInformation, GENDER } from '@prisma/client'
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDate, IsEnum, IsString } from 'class-validator'
-import { Type } from 'class-transformer'
+import { UserInformation, GENDER } from '@prisma/client'
+import { IsEnum, IsString } from 'class-validator'
 import { PrismaEntity } from 'src/lib/prisma-entity'
 
 export class UserInformationEntity extends PrismaEntity {

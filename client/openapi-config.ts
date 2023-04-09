@@ -8,6 +8,9 @@ const config: ConfigFile = {
     './src/store/api/codegen/app.ts': {
       filterEndpoints: [/appController/i],
     },
+    './src/store/api/codegen/portfolio.ts': {
+      filterEndpoints: [/PortfoliosController/i],
+    },
     './src/store/api/codegen/user.ts': {
       filterEndpoints: [/UsersController/i],
     },

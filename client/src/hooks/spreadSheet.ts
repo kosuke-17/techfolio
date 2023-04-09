@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import { SyntheticEvent } from 'react'
 
-export type TabType = 'info' | 'portfolio' | 'skill'
+import { TabType } from '@/constant/spreadsheet'
 
 export const useSpreadSheet = () => {
   const router = useRouter()
-  const tabType = router.query.type as TabType
 
   /* クリックされたtabTypeの作成ページに遷移 */
   const goToNew = (tabType: TabType) => {
@@ -33,5 +32,11 @@ export const useSpreadSheet = () => {
     router.push({ query: { type: selectedTabType } })
   }
 
-  return { tabType, goToNew, goToEdit, goToBack, onChangeTabType }
+  return {
+    tabType: router.query.type as unknown as TabType,
+    goToNew,
+    goToEdit,
+    goToBack,
+    onChangeTabType,
+  }
 }

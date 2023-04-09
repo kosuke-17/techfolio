@@ -11,6 +11,7 @@ import ContentCenter from '@/components/presentations/ContentCenter'
 import IconButton from '@/components/presentations/atoms/IconButton'
 import TabPanel from '@/components/presentations/atoms/TabPanel'
 import UserInformationField from '@/components/templates/SpreadSheetEditForm/UserInfomationField'
+import { TAB_TYPE } from '@/constant/spreadsheet'
 
 import { useHooks } from './hooks'
 
@@ -43,7 +44,7 @@ const SpreadSheetEditForm = () => {
             />
           ))}
         </Tabs>
-        <TabPanel value={value} tabType='info'>
+        <TabPanel value={value} tabType={TAB_TYPE.Info}>
           <UserInformationField />
         </TabPanel>
       </Paper>

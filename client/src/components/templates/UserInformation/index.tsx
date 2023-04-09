@@ -6,13 +6,13 @@ import LayoutTable from '@/components/presentations/LayoutTable'
 import TableContainer from '@/components/presentations/TableContainer'
 import TableHeader from '@/components/presentations/TableHeader'
 import LoadingCircular from '@/components/presentations/atoms/LoadingCircular'
+import { TAB_TYPE } from '@/constant/spreadsheet'
 
 import { useHooks } from './hooks'
 
 type Props = { id?: string }
 
 const UserInformation = ({ id }: Props) => {
-  const tabType = 'info'
   const { colums, rows, goToNew, goToEdit, isLoading } = useHooks({
     id,
   })
@@ -23,7 +23,7 @@ const UserInformation = ({ id }: Props) => {
   const actions = [
     {
       icon: EditIcon,
-      onClick: () => goToEdit(tabType),
+      onClick: () => goToEdit(TAB_TYPE.Info),
       isHidden: isNew,
     },
     {
@@ -41,7 +41,7 @@ const UserInformation = ({ id }: Props) => {
       {isNew ? (
         <CreateContainerPaper
           label='基本情報を作成'
-          onMove={() => goToNew(tabType)}
+          onMove={() => goToNew(TAB_TYPE.Info)}
         />
       ) : (
         <TableContainer colums={colums} rows={rows} />

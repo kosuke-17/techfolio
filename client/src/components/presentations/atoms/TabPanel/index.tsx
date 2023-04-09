@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
 import { FC } from 'react'
 
-import { TabType } from '@/hooks/spreadSheet'
+import { TabType } from '@/constant/spreadsheet'
 
 type Props = {
   children?: React.ReactNode

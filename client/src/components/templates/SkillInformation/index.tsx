@@ -5,6 +5,7 @@ import CreateContainerPaper from '@/components/presentations/CreateContainerPape
 import LayoutTable from '@/components/presentations/LayoutTable'
 import SkillTableContainer from '@/components/presentations/SkillTableContainer'
 import TableHeader from '@/components/presentations/TableHeader'
+import { TAB_TYPE } from '@/constant/spreadsheet'
 
 import { useHooks } from './hooks'
 
@@ -13,14 +14,13 @@ type Props = {
 }
 
 const SkillInformation = ({ id }: Props) => {
-  const tabType = 'skill'
   const { colums, rows, goToNew, goToEdit } = useHooks()
   const isNew = !id
 
   const actions = [
     {
       icon: EditIcon,
-      onClick: () => goToEdit(tabType),
+      onClick: () => goToEdit(TAB_TYPE.Skill),
       isHidden: isNew,
     },
     {
@@ -38,7 +38,7 @@ const SkillInformation = ({ id }: Props) => {
       {isNew ? (
         <CreateContainerPaper
           label='スキル要約を作成'
-          onMove={() => goToNew(tabType)}
+          onMove={() => goToNew(TAB_TYPE.Skill)}
         />
       ) : (
         <SkillTableContainer colums={colums} rows={rows} />

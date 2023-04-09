@@ -5,6 +5,7 @@ import CreateContainerPaper from '@/components/presentations/CreateContainerPape
 import LayoutTable from '@/components/presentations/LayoutTable'
 import TableContainer from '@/components/presentations/TableContainer'
 import TableHeader from '@/components/presentations/TableHeader'
+import { TAB_TYPE } from '@/constant/spreadsheet'
 
 import { useHooks } from './hooks'
 
@@ -13,14 +14,13 @@ type Props = {
 }
 
 const PortfolioUrlList = ({ id }: Props) => {
-  const tabType = 'portfolio'
   const { colums, rows, goToNew, goToEdit } = useHooks()
   const isNew = !id
 
   const actions = [
     {
       icon: EditIcon,
-      onClick: () => goToEdit(tabType),
+      onClick: () => goToEdit(TAB_TYPE.Portfolio),
       isHidden: isNew,
     },
     {
@@ -37,7 +37,7 @@ const PortfolioUrlList = ({ id }: Props) => {
       {isNew ? (
         <CreateContainerPaper
           label='ポートフォリオを作成'
-          onMove={() => goToNew(tabType)}
+          onMove={() => goToNew(TAB_TYPE.Portfolio)}
         />
       ) : (
         <TableContainer colums={colums} rows={rows} />

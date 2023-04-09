@@ -1,3 +1,6 @@
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+
 import CreateContainerPaper from '@/components/presentations/CreateContainerPaper'
 import LayoutTable from '@/components/presentations/LayoutTable'
 import TableContainer from '@/components/presentations/TableContainer'
@@ -17,13 +20,24 @@ const UserInformation = ({ id }: Props) => {
 
   if (isLoading) return <LoadingCircular />
 
+  const actions = [
+    {
+      icon: EditIcon,
+      onClick: () => goToEdit(tabType),
+      isHidden: isNew,
+    },
+    {
+      icon: DeleteIcon,
+      onClick: () => {
+        // TODO: userInfofmation削除
+      },
+      isHidden: isNew,
+    },
+  ]
+
   return (
     <LayoutTable>
-      <TableHeader
-        title='基本情報'
-        hiddenIcon={isNew}
-        onClick={() => goToEdit(tabType)}
-      />
+      <TableHeader title='基本情報' actions={actions} />
       {isNew ? (
         <CreateContainerPaper
           label='基本情報を作成'

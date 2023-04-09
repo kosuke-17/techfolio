@@ -1,3 +1,6 @@
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+
 import CreateContainerPaper from '@/components/presentations/CreateContainerPaper'
 import LayoutTable from '@/components/presentations/LayoutTable'
 import SkillTableContainer from '@/components/presentations/SkillTableContainer'
@@ -14,9 +17,24 @@ const SkillInformation = ({ id }: Props) => {
   const { colums, rows, goToNew, goToEdit } = useHooks()
   const isNew = !id
 
+  const actions = [
+    {
+      icon: EditIcon,
+      onClick: () => goToEdit(tabType),
+      isHidden: isNew,
+    },
+    {
+      icon: DeleteIcon,
+      onClick: () => {
+        // TODO: skill削除
+      },
+      isHidden: isNew,
+    },
+  ]
+
   return (
     <LayoutTable>
-      <TableHeader title='スキル要約' onClick={() => goToEdit(tabType)} />
+      <TableHeader title='スキル要約' actions={actions} />
       {isNew ? (
         <CreateContainerPaper
           label='スキル要約を作成'

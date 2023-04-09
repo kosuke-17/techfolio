@@ -3,7 +3,7 @@ import { useMe } from '@/hooks/api/user'
 export const useHooks = () => {
   const { me } = useMe()
   const download = () => {
-    console.log('ダウンロード処理')
+    // TODO:ダウンロード処理
   }
 
   return {

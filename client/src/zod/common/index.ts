@@ -1,5 +1,9 @@
 import { z } from 'zod'
 
+// optional
+export const optionalString = z.string()
+
+// required
 export const requiredString = z
   .string()
   .min(1, { message: '1文字以上入力する必要があります。' })

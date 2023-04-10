@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles'
 import ContentCenter from '@/components/presentations/ContentCenter'
 import IconButton from '@/components/presentations/atoms/IconButton'
 import TabPanel from '@/components/presentations/atoms/TabPanel'
+import PortfolioField from '@/components/templates/SpreadSheetEditForm//PortfolioField'
 import UserInformationField from '@/components/templates/SpreadSheetEditForm/UserInfomationField'
 import { TAB_TYPE } from '@/constant/spreadsheet'
 
@@ -46,6 +47,9 @@ const SpreadSheetEditForm = () => {
         </Tabs>
         <TabPanel value={value} tabType={TAB_TYPE.Info}>
           <UserInformationField />
+        </TabPanel>
+        <TabPanel value={value} tabType={TAB_TYPE.Portfolio}>
+          <PortfolioField />
         </TabPanel>
       </Paper>
     </ContentCenter>

@@ -37,4 +37,16 @@ export class PortfoliosService {
       this.logger.error(e)
     }
   }
+
+  async findAllByLoginUser({ user }: { user: Pick<ResponseMeDto, 'id'> }) {
+    const portfolio = await this.prisma.portfolio.findMany({
+      where: { userId: user.id },
+      select: {
+        id: true,
+        name: true,
+        url: true,
+      },
+    })
+    return { data: portfolio }
+  }
 }

@@ -237,6 +237,22 @@
             "description": ""
           }
         }
+      },
+      "get": {
+        "operationId": "PortfoliosController_findAllByLoginUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindAllByLoginUserPortfolioResponseDto"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -611,6 +627,39 @@
         },
         "required": [
           "portfolios"
+        ]
+      },
+      "PotfolioFindAllByLoginUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "FindAllByLoginUserPortfolioResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PotfolioFindAllByLoginUser"
+            }
+          }
+        },
+        "required": [
+          "data"
         ]
       }
     }

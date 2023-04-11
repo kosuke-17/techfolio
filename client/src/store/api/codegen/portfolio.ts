@@ -12,9 +12,9 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.upsertPortfolioDto,
       }),
     }),
-    portfoliosControllerFindAll: build.query<
-      PortfoliosControllerFindAllApiResponse,
-      PortfoliosControllerFindAllApiArg
+    portfoliosControllerFindAllByLoginUser: build.query<
+      PortfoliosControllerFindAllByLoginUserApiResponse,
+      PortfoliosControllerFindAllByLoginUserApiArg
     >({
       query: () => ({ url: `/api/portfolios` }),
     }),
@@ -26,9 +26,9 @@ export type PortfoliosControllerUpsertApiResponse = unknown
 export type PortfoliosControllerUpsertApiArg = {
   upsertPortfolioDto: UpsertPortfolioDto
 }
-export type PortfoliosControllerFindAllApiResponse =
-  /** status 200  */ FindAllPortfolioResponseDto
-export type PortfoliosControllerFindAllApiArg = void
+export type PortfoliosControllerFindAllByLoginUserApiResponse =
+  /** status 200  */ FindAllByLoginUserPortfolioResponseDto
+export type PortfoliosControllerFindAllByLoginUserApiArg = void
 export type PortfolioForUpsert = {
   id: string
   name?: string | null
@@ -37,15 +37,15 @@ export type PortfolioForUpsert = {
 export type UpsertPortfolioDto = {
   portfolios: PortfolioForUpsert[]
 }
-export type PotfolioFindAll = {
+export type PotfolioFindAllByLoginUser = {
   id: string
   name?: string | null
   url?: string | null
 }
-export type FindAllPortfolioResponseDto = {
-  data: PotfolioFindAll[]
+export type FindAllByLoginUserPortfolioResponseDto = {
+  data: PotfolioFindAllByLoginUser[]
 }
 export const {
   usePortfoliosControllerUpsertMutation,
-  usePortfoliosControllerFindAllQuery,
+  usePortfoliosControllerFindAllByLoginUserQuery,
 } = injectedRtkApi

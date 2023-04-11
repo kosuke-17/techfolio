@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { v4 as uuid } from 'uuid'
 import { z } from 'zod'
@@ -11,13 +11,15 @@ import { getErrorMessage } from '@/lib/error'
 import { enhancedApi } from '@/store/api/codegen/portfolio'
 import { optionalString } from '@/zod/common'
 
-const schema = z.array(
-  z.object({
-    id: optionalString,
-    name: optionalString,
-    url: optionalString,
-  })
-)
+const schema = z.object({
+  portfolioInputs: z.array(
+    z.object({
+      id: optionalString,
+      name: optionalString,
+      url: optionalString,
+    })
+  ),
+})
 export type DefaultValues = z.infer<typeof schema>
 
 export const useHooks = () => {
@@ -55,14 +57,20 @@ export const useHooks = () => {
 
   const [upsertMutation] = enhancedApi.usePortfoliosControllerUpsertMutation()
 
-  const { control, handleSubmit } = useForm<DefaultValues>({
+  const { control, handleSubmit, setValue } = useForm<DefaultValues>({
     resolver: zodResolver(schema),
-    defaultValues: [{ name: '', url: '' }],
+    defaultValues: { portfolioInputs },
   })
 
-  const upsert = async (portfolios: DefaultValues) => {
+  useEffect(() => {
+    setValue('portfolioInputs', portfolioInputs)
+  }, [portfolioInputs, setValue])
+
+  const upsert = async ({ portfolioInputs }: DefaultValues) => {
     try {
-      await upsertMutation({ upsertPortfolioDto: { portfolios } }).unwrap()
+      await upsertMutation({
+        upsertPortfolioDto: { portfolios: portfolioInputs },
+      }).unwrap()
       router.push('/spread-sheet')
       setSnackbarProps({ open: true, message: '更新しました' })
     } catch (e) {

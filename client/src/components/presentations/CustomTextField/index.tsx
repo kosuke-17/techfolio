@@ -4,7 +4,7 @@ import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import InputLabel from '@mui/material/InputLabel'
 import { styled, SxProps } from '@mui/material/styles'
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { useController, Control } from 'react-hook-form'
 
 import OutlinedInput from '@/components/presentations//OutlinedInput'
@@ -22,6 +22,7 @@ type Props = {
   sx?: SxProps
   suffixLabel?: string
   format?: (v: string) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
 const StyledInputLabel = styled(InputLabel)(() => ({
@@ -45,6 +46,7 @@ const CustomTextField: FC<Props> = ({
   readOnly = false,
   suffixLabel,
   format,
+  onChange,
   ...rest
 }) => {
   const {
@@ -71,12 +73,17 @@ const CustomTextField: FC<Props> = ({
           readOnly={readOnly}
           {...rest}
           {...field}
-          onChange={(e) => {
+          onChange={(
+            e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+          ) => {
             const v = e.target.value
             if (format) {
               field.onChange(format(v))
             } else {
               field.onChange(v)
+            }
+            if (onChange) {
+              onChange(e)
             }
           }}
         />

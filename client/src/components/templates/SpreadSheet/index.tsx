@@ -13,7 +13,7 @@ import UserInformation from '@/components/templates/UserInformation'
 import SkillInformation from '../SkillInformation'
 import { useHooks } from './hooks'
 
-const StyledSpreadSheetHeader = styled(Box)(({ theme }) => ({
+const StyledSpreadSheetHeader = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'space-between',
 }))
@@ -34,7 +34,7 @@ const SpreadSheet = () => {
 
         <UserInformation id={userInformationId} />
 
-        <PortfolioUrlList id={''} />
+        <PortfolioUrlList />
 
         <SkillInformation id={''} />
       </Paper>

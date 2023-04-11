@@ -9,13 +9,9 @@ import { TAB_TYPE } from '@/constant/spreadsheet'
 
 import { useHooks } from './hooks'
 
-type Props = {
-  id?: string
-}
-
-const PortfolioUrlList = ({ id }: Props) => {
+const PortfolioUrlList = () => {
   const { colums, rows, goToNew, goToEdit } = useHooks()
-  const isNew = !id
+  const isNew = !rows.length
 
   const actions = [
     {

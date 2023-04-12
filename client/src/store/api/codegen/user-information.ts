@@ -28,6 +28,15 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.updateUserInformationDto,
       }),
     }),
+    userInformationsControllerDelete: build.mutation<
+      UserInformationsControllerDeleteApiResponse,
+      UserInformationsControllerDeleteApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/user-informations/${queryArg.id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
   overrideExisting: false,
 })
@@ -45,6 +54,10 @@ export type UserInformationsControllerUpdateApiResponse = unknown
 export type UserInformationsControllerUpdateApiArg = {
   id: string
   updateUserInformationDto: UpdateUserInformationDto
+}
+export type UserInformationsControllerDeleteApiResponse = unknown
+export type UserInformationsControllerDeleteApiArg = {
+  id: string
 }
 export type Gender = 'MALE' | 'FEMALE'
 export type CreateUserInformationDto = {
@@ -84,4 +97,5 @@ export const {
   useUserInformationsControllerCreateMutation,
   useUserInformationsControllerFindOneQuery,
   useUserInformationsControllerUpdateMutation,
+  useUserInformationsControllerDeleteMutation,
 } = injectedRtkApi

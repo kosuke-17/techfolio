@@ -13,9 +13,10 @@ import { useHooks } from './hooks'
 type Props = { id?: string }
 
 const UserInformation = ({ id }: Props) => {
-  const { colums, rows, goToNew, goToEdit, isLoading } = useHooks({
-    id,
-  })
+  const { colums, rows, goToNew, goToEdit, isLoading, deleteUserInformation } =
+    useHooks({
+      id,
+    })
   const isNew = !id
 
   if (isLoading) return <LoadingCircular />
@@ -29,7 +30,9 @@ const UserInformation = ({ id }: Props) => {
     {
       icon: DeleteIcon,
       onClick: () => {
-        // TODO: userInfofmation削除
+        if (id) {
+          deleteUserInformation(id)
+        }
       },
       isHidden: isNew,
     },

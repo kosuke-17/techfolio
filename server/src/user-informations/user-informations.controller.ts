@@ -1,6 +1,11 @@
+import { CreateUserInformationDto } from './dtos/create-user-information.dto'
+import { UserInformationResponseDto } from './dtos/response-user-information.dto'
+import { UpdateUserInformationDto } from './dtos/update-user-information.dto'
+import { UserInformationsService } from './user-informations.service'
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -10,10 +15,6 @@ import {
 import { BearerAuthGuard } from 'src/auth/bearer-auth.guard'
 import { LoginUser } from 'src/auth/decolators/users.decorator'
 import { ResponseMeDto } from 'src/users/dtos/response-login-user.dto'
-import { CreateUserInformationDto } from './dtos/create-user-information.dto'
-import { UserInformationResponseDto } from './dtos/response-user-information.dto'
-import { UpdateUserInformationDto } from './dtos/update-user-information.dto'
-import { UserInformationsService } from './user-informations.service'
 
 @Controller('user-informations')
 @UseGuards(BearerAuthGuard)
@@ -42,5 +43,10 @@ export class UserInformationsController {
     @Param('id') id: string,
   ): Promise<void> {
     this.userInformationsService.update(id, user, updateUserInformationDto)
+  }
+
+  @Delete(':id')
+  async delete(@LoginUser() user: ResponseMeDto, @Param('id') id: string) {
+    await this.userInformationsService.delete({ user, id })
   }
 }

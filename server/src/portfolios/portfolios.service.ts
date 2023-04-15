@@ -49,4 +49,14 @@ export class PortfoliosService {
     })
     return { data: portfolio }
   }
+
+  async delete(params: { user: Pick<ResponseMeDto, 'id'>; id: string }) {
+    try {
+      await this.prisma.portfolio.delete({
+        where: { id: params.id },
+      })
+    } catch (e) {
+      this.logger.error(e)
+    }
+  }
 }

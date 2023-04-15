@@ -272,6 +272,26 @@
           }
         }
       }
+    },
+    "/api/portfolios/{id}": {
+      "delete": {
+        "operationId": "PortfoliosController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "info": {
